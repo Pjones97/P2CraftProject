@@ -9,6 +9,9 @@
 *.pot
 *.pyc
 __pycache__/
+CraftSite/__pycache__/
+crafts/__pycache__/
+Crafts/__pycache__/
 local_settings.py
 
 # Database

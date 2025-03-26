@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'Craft', # just added but doesn't work since it isn't a model yet
+    'crafts', # just added but doesn't work since it isn't a model yet
 
 ]
 
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'CraftSite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['crafts/templates/'], #[], # [BASE_DIR / 'templates'], # [os.path.join(BASE_DIR, 'CraftSite/templates')], # TODO this didn't work
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
