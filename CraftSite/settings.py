@@ -62,10 +62,15 @@ TEMPLATES_CRAFTS = os.path.join(BASE_DIR, 'Crafts/templates')
 # TEMPLATES
 #
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print("new base directory: ", BASE_DIR)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, TEMPLATES_CRAFTSITE, TEMPLATES_CRAFTS], # TODO this didn't work
+        'DIRS':  [os.path.join(BASE_DIR, 'templates')], # [BASE_DIR, TEMPLATES_CRAFTSITE, TEMPLATES_CRAFTS], # TODO this didn't work
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +85,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CraftSite.wsgi.application'
 
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -132,3 +137,57 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+"""
+Got it! Thanks for the detailed explanation. To ensure that you don't have to update the DIRS setting in your settings.py file every time you add a new app, you can use a more dynamic approach. Instead of listing each app's template directory individually, you can set up a single directory that will include all your templates.
+
+Here's how you can do it:
+
+Create a new directory called templates at the root of your project (i.e., inside the Location directory).
+Inside this templates directory, create subdirectories for each app (e.g., Crafts, Things).
+Your directory structure will look like this:
+
+Location/
+    manage.py
+    CraftSite/
+        settings.py
+    Crafts/
+        views.py
+        templates/
+            Crafts/
+                index.html
+    Things/
+        templates/
+            Things/
+                things.html
+    templates/
+        Crafts/
+        Things/
+Move the Crafts/templates/Crafts and Things/templates/Things directories into the new templates directory at the root level.
+
+Update your settings.py file to include the new templates directory in the DIRS setting:
+
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+With this setup, you only need to add your templates to the appropriate subdirectory inside the templates directory, and Django will automatically find them without needing to update the DIRS setting each time.
+
+Let me know if you need any further assistance!
+"""
