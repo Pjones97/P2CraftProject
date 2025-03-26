@@ -14,6 +14,8 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+print("This is base directory: ", BASE_DIR)
+# print(concated) # TODO Take this away
 
 
 # Quick-start development settings - unsuitable for production
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'CraftSite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Crafts/templates/'], #[], # [BASE_DIR / 'templates'], # [os.path.join(BASE_DIR, 'CraftSite/templates')], # TODO this didn't work
+        'DIRS': [BASE_DIR], # [os.path.join(BASE_DIR, 'templates')], #[os.path.join(BASE_DIR, '*/templates')], # ['Crafts/templates/'], #[], # [BASE_DIR / 'templates'], # [os.path.join(BASE_DIR, 'CraftSite/templates')], # TODO this didn't work
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
