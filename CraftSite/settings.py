@@ -55,10 +55,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'CraftSite.urls'
 
+TEMPLATES_CRAFTSITE = os.path.join(BASE_DIR, 'CraftSite','templates')
+TEMPLATES_CRAFTS = os.path.join(BASE_DIR, 'Crafts/templates')
+# I want to automate this process so multiple templates always go to the correct location
+# But for the time being, everytime we make a new template, it has to be made here, and then put into the list of 'DIRS' in
+# TEMPLATES
+#
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR], # [os.path.join(BASE_DIR, 'templates')], #[os.path.join(BASE_DIR, '*/templates')], # ['Crafts/templates/'], #[], # [BASE_DIR / 'templates'], # [os.path.join(BASE_DIR, 'CraftSite/templates')], # TODO this didn't work
+        'DIRS': [BASE_DIR, TEMPLATES_CRAFTSITE, TEMPLATES_CRAFTS], # TODO this didn't work
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
