@@ -62,15 +62,13 @@ TEMPLATES_CRAFTS = os.path.join(BASE_DIR, 'Crafts/templates')
 # TEMPLATES
 #
 
-import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print("new base directory: ", BASE_DIR)
-
+# Okay my new idea was just to use CraftSite/templates and make the baseOldName.html like we did in step 3 before
+# and in every html file (like index.html) just use {% extends 'baseOldName.html' %}
+# it didn't work but it was worth a shot
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS':  [os.path.join(BASE_DIR, 'templates')], # [BASE_DIR, TEMPLATES_CRAFTSITE, TEMPLATES_CRAFTS], # TODO this didn't work
+        'DIRS':  [os.path.join(BASE_DIR, 'CraftSite/templates'), TEMPLATES_CRAFTS], # [BASE_DIR, TEMPLATES_CRAFTSITE, TEMPLATES_CRAFTS], # TODO this didn't work
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
