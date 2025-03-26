@@ -24,6 +24,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('crafts.urls')),
+    path('', include('Crafts.urls')),
    
 ]

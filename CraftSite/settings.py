@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crafts', # just added but doesn't work since it isn't a model yet
+    'Crafts', # just added but doesn't work since it isn't a model yet
 
 ]
 
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'CraftSite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['crafts/templates/'], #[], # [BASE_DIR / 'templates'], # [os.path.join(BASE_DIR, 'CraftSite/templates')], # TODO this didn't work
+        'DIRS': ['Crafts/templates/'], #[], # [BASE_DIR / 'templates'], # [os.path.join(BASE_DIR, 'CraftSite/templates')], # TODO this didn't work
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

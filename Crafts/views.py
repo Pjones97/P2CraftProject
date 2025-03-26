@@ -11,7 +11,7 @@ def index(request):
     print("To the console!")
     print(request)
     # return HttpResponse("Hello, world. You're at the index.") # This works!
-    return render(request, "crafts/index.html") # This line gives an error when you click Go To -> Implementations
+    return render(request, "Crafts/index.html") # This line gives an error when you click Go To -> Implementations
 
 def test(request):
-    return render(request, "crafts/test.html")
+    return render(request, "Crafts/test.html")
