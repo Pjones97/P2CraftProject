@@ -31,7 +31,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def logout(request):
     auth_logout(request)
-    return redirect('Crafts.index')
+    return redirect('Crafts.index') # Go to Crafts/urls and this is the name of the index!!!!
 def login(request):
     template_data = {}
     template_data['title'] = 'Login'
@@ -80,7 +80,8 @@ class ForgotPasswordView(PasswordResetView):
     email_template_name = 'accounts/password_reset_email.html'  # Email template
     subject_template_name = 'accounts/password_reset_subject.txt'  # Email subject template
     success_url = reverse_lazy('accounts.password_reset_done')  # Redirect after form submission to "Email sent, go back to home page"
-    # used to give an error, not anymore
+    # TODO see if you should have accounts.password_reset_done or password_reset_done
+    # its not redirecting me!
 
 from django.contrib.auth.views import PasswordResetCompleteView
 from django.urls import reverse_lazy
