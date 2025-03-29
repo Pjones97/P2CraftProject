@@ -1,0 +1,74 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-3 mt-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow p-3 mb-4 rounded">
+          <div class="card-body">
+            <h2>Sign Up</h2>
+            <hr />
+            <form method="POST">
+              {% csrf_token %}
+              {{ template_data.form.as_p }}
+              <button type="submit"
+                class="btn bg-dark text-white">Sign Up
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+<!--<form method="post">-->
+<!--    {% csrf_token %} {# this is the cybersecurity line #}-->
+<!--    {{ form.as_p }} {# Okay so this is the whole user account creation thing #} {# form is the called in views.py at the end of the render function. The .as_p is a field that gives the exact format of this password thing you have #}-->
+<!--    <button type="submit">Register</button> {# This is the button at the very bottom in gray #}-->
+<!--</form>'  {# TODO Should I have that apostrophe at the end?#}-->
+
+
+{# https://www.geeksforgeeks.org/form-as_p-render-django-forms-as-paragraph/ #}
+
+{# You can make your own form like this below #}
+
+{# in the file forms.py #}
+{#from django import forms#}
+{#  #}
+{## creating a form #}
+{#class InputForm(forms.Form):#}
+{#  #}
+{#    first_name = forms.CharField(max_length = 200)#}
+{#    last_name = forms.CharField(max_length = 200)#}
+{#roll_number = forms.IntegerField(#}
+{#help_text = "Enter 6 digit roll number"#}
+{#)#}
+{#password = forms.CharField(widget = forms.PasswordInput())#}
+
+{# Then go to views.py#}
+{#from django.shortcuts import render#}
+{#from .forms import InputForm#}
+{#  #}
+{## Create your views here.#}
+{#def home_view(request):#}
+{#    context ={}#}
+{#    context['form']= InputForm()#}
+{#    return render(request, "home.html", context)#}
+
+{#  Then lastly go to your .html file that you are making the request for #}
+{#<form action = "" method = "post">#}
+{#    {% csrf_token %}#}
+{#    {{form.as_p }}#}
+{#    <input type="submit" value=Submit">#}
+{#</form>#}
+
+
+{# https://www.geeksforgeeks.org/form-as_p-render-django-forms-as-paragraph/ #}
