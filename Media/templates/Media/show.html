@@ -1,0 +1,22 @@
+<!-- add the extends base line when dashboard made -->
+
+<!--  block content %} -->
+{% load static %}
+<div class="p-3">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-6 mx-auto mb-3">
+        <h2>{{ template_data.craft.name }}</h2>
+        <hr />
+        <p><b>Description:</b> {{ template_data.craft.description }}
+        </p>
+      </div>
+      <div class="col-md-6 mx-auto mb-3 text-center">
+        <img src="{% static 'img/about.jpg' %}"
+          class="rounded" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add the endblack line when dahsboard made -->
