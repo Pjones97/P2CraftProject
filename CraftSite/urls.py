@@ -28,5 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Crafts.urls')),
     path('accounts/', include('accounts.urls')),
+    path('CraftIdea/', include('CraftIdea.urls')),
    
 ]
