@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Crafts',
+    'Media',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,10 @@ ROOT_URLCONF = 'CraftSite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Crafts/templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'Crafts/templates'),
+            os.path.join(BASE_DIR, 'CraftSite/templates')  # Add this line to include CraftSite templates
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
