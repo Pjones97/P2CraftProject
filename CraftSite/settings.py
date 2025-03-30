@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Crafts', # just added but doesn't work since it isn't a model yet
     'accounts', #ok cool now my email should send
+    'CraftIdea',
+
 ]
 
 MIDDLEWARE = [
