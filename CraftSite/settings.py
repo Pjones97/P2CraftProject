@@ -68,6 +68,7 @@ ROOT_URLCONF = 'CraftSite.urls'
 TEMPLATES_CRAFTSITE = os.path.join(BASE_DIR, 'CraftSite','templates')
 TEMPLATES_CRAFTS = os.path.join(BASE_DIR, 'Crafts/templates')
 TEMPLATES_ACCOUNTS = os.path.join(BASE_DIR, 'accounts/templates')
+TEMPLATES_CRAFTIDEASITE = os.path.join(BASE_DIR, 'CraftIdea','templates')
 # I want to automate this process so multiple templates always go to the correct location
 # But for the time being, everytime we make a new template, it has to be made here, and then put into the list of 'DIRS' in
 # TEMPLATES
@@ -79,7 +80,8 @@ TEMPLATES_ACCOUNTS = os.path.join(BASE_DIR, 'accounts/templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS':  [os.path.join(BASE_DIR, 'CraftSite/templates'), TEMPLATES_CRAFTS, TEMPLATES_ACCOUNTS], # [BASE_DIR, TEMPLATES_CRAFTSITE, TEMPLATES_CRAFTS], # TODO this didn't work
+        'DIRS':  [os.path.join(BASE_DIR, 'CraftSite/templates'), TEMPLATES_CRAFTS,
+                    TEMPLATES_ACCOUNTS, TEMPLATES_CRAFTIDEASITE], # [BASE_DIR, TEMPLATES_CRAFTSITE, TEMPLATES_CRAFTS], # TODO this didn't work
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
