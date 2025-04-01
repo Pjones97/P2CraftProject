@@ -1,6 +1,7 @@
 <!-- this can be added when the base template is made aka the dashboard -->
 <!-- extends 'base.html' -->
-
+{% extends 'base.html' %}
+{% block content %}
 <!--  block content -->
 {% load static %}
 <div class="p-3">
@@ -13,24 +14,19 @@
     </div>
     <div class="row">
       {% for craft in template_data.post %}
-      <div class="col-md-4 col-lg-3 mb-2">
-        <div class="p-2 card align-items-center pt-4">
-          <img src="{% static 'img/about.jpg' %}"
-            class="card-img-top rounded">
-          <div class="card-body text-center">
-            <!-- link to go to personal page  -->
-             <!-- media.show to get to file, craft.id for ref to views and craft = post[id] -->
-            <a href="{% url 'Media.show' id=craft.id %}"
-              class="btn bg-dark text-white">
-              {{ craft.name }}
-            </a>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ craft.name }}</h5>
+              <p class="card-text">{{ craft.description }}</p>
+              <a href="{% url 'Media.show' craft.id %}" class="btn btn-primary">View Details</a>
+            </div>
           </div>
         </div>
-      </div>
       {% endfor %}
     </div>
   </div>
 </div>
 
-
+{% endblock content %}
 <!-- endblock content %} -->

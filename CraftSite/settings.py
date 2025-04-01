@@ -127,3 +127,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# need to register the folder containing css file and static files to use them 
+STATICFILES_DIRS = [
+    BASE_DIR / 'CraftSite/static/',
+]
