@@ -3,5 +3,5 @@ from . import views
 urlpatterns = [
     #define path
     path('', views.index, name='Media.index'),
-    path('<int:id>/', views.show, name='Media.show'),
+    path('craft/<int:id>/', views.show, name='Media.show'),
 ]

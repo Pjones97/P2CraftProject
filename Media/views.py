@@ -4,46 +4,28 @@ from django.shortcuts import render
 
 post = [
     {
-        'id': 1, 'name': 'Custom PC Build',
-        'description': 'Assemble a powerful gaming or workstation PC with hand-picked components.'
+        'id': 1,
+        'name': 'Custom PC Build',
+        'description': 'Assemble a powerful gaming or workstation PC with hand-picked components.',
+        'video': 'https://www.youtube.com/embed/BLn1NL5bEA8',  # Example embedded link
+        'locations': ['Micro Center', 'Best Buy', 'Newegg (Online)']
     },
     {
-        'id': 2, 'name': 'Crochet Blanket',
-        'description': 'Create a cozy, handmade blanket using yarn and a crochet hook.'
+        'id': 2,
+        'name': 'Crochet Blanket',
+        'description': 'Create a cozy, handmade blanket using yarn and a crochet hook.',
+        'video': 'https://www.youtube.com/embed/M7YZ8BqKPbY',
+        'locations': ['Joann Fabrics', 'Michaels', 'Hobby Lobby']
     },
     {
-        'id': 3, 'name': '3D Printed Figurines',
-        'description': 'Design and print custom figurines or prototypes using a 3D printer.'
-    },
-    {
-        'id': 4, 'name': 'Handmade Candles',
-        'description': 'Mix wax, fragrance, and color to craft unique scented candles.'
-    },
-    {
-        'id': 5, 'name': 'Arduino Smart Light',
-        'description': 'Build an automated lighting system using an Arduino board and sensors.'
-    },
-    {
-        'id': 6, 'name': 'DIY Leather Wallet',
-        'description': 'Cut, stitch, and assemble a custom leather wallet by hand.'
-    },
-    {
-        'id': 7, 'name': 'Resin Art Coasters',
-        'description': 'Pour and cure epoxy resin mixed with colors and embellishments for unique coasters.'
-    },
-    {
-        'id': 8, 'name': 'Hand-Painted Sneakers',
-        'description': 'Customize sneakers with unique hand-painted designs and colors.'
-    },
-    {
-        'id': 9, 'name': 'DIY Terrarium',
-        'description': 'Assemble a small indoor garden using plants, soil, and decorative elements.'
-    },
-    {
-        'id': 10, 'name': 'Wood-Burning Art',
-        'description': 'Create intricate designs on wood using a pyrography pen.'
+        'id': 3,
+        'name': '3D Printed Figurines',
+        'description': 'Design and print custom figurines or prototypes using a 3D printer.',
+        'video': 'https://www.youtube.com/embed/5IuUZMtKlAs',
+        'locations': ['Amazon', 'MatterHackers', 'Micro Center']
     }
 ]
+
 
 def index(request):
     template_data = {}
