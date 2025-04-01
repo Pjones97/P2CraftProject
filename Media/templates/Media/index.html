@@ -12,18 +12,13 @@
       </div>
     </div>
     <div class="row">
-      {% for craft in template_data.post %}
+     {% for craft in template_data.craft %}
       <div class="col-md-4 col-lg-3 mb-2">
         <div class="p-2 card align-items-center pt-4">
           <img src="{% static 'img/about.jpg' %}"
             class="card-img-top rounded">
           <div class="card-body text-center">
-            <!-- link to go to personal page  -->
-             <!-- media.show to get to file, craft.id for ref to views and craft = post[id] -->
-            <a href="{% url 'Media.show' id=craft.id %}"
-              class="btn bg-dark text-white">
-              {{ craft.name }}
-            </a>
+            {{ craft.title }}
           </div>
         </div>
       </div>

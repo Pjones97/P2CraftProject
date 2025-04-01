@@ -56,12 +56,12 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     search_term = request.GET.get('search')
     if search_term:
-        movies = CraftIdeaModel.objects.filter(title__icontains=search_term)
+        crafts = CraftIdeaModel.objects.filter(title__icontains=search_term)
     else:
-        movies = CraftIdeaModel.objects.all()
+        crafts = CraftIdeaModel.objects.all()
     template_data = {}
-    template_data['title'] = 'Movies' # copied this straight from movies ngl
-    template_data['craft'] = movies
+    template_data['title'] = 'Crafts' # copied this straight from movies ngl
+    template_data['craft'] = crafts
     return render(request, 'Media/index.html',
                   {'template_data': template_data})
 # def index(request):
@@ -72,9 +72,12 @@ def index(request):
 #                   {'template_data': template_data})
 
 def show(request, id):
-    craft = post[id - 1]
+    craft = CraftIdeaModel.objects.get(id=id)
+    reviews = CraftIdeaReview.objects.get(craft=craft)
     template_data = {}
-    template_data['title'] = craft['name']
+    # template_data['title'] = craft['name']
+    template_data['title'] = craft.title
     template_data['craft'] = craft
+    template_data['reviews'] = reviews
     return render(request, 'Media/show.html',
                   {'template_data': template_data})
