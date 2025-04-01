@@ -75,7 +75,8 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'Crafts/templates'),
             os.path.join(BASE_DIR, 'CraftSite/templates'),  # Add this line to include CraftSite templates
             TEMPLATES_ACCOUNTS,
-            TEMPLATES_MEDIA # need comma if you add more templates
+            TEMPLATES_MEDIA,  # need comma if you add more templates
+            os.path.join(BASE_DIR, 'movie_images')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -138,6 +139,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'CraftSite/static',
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
