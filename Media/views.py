@@ -45,12 +45,31 @@ post = [
     }
 ]
 
+
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import CraftIdeaModel, CraftIdeaReview
+from django.contrib.auth.decorators import login_required
+
+
+# Create your views here.
 def index(request):
+    search_term = request.GET.get('search')
+    if search_term:
+        movies = CraftIdeaModel.objects.filter(title__icontains=search_term)
+    else:
+        movies = CraftIdeaModel.objects.all()
     template_data = {}
-    template_data['title'] = 'Crafts'
-    template_data['post'] = post
+    template_data['title'] = 'Movies' # copied this straight from movies ngl
+    template_data['craft'] = movies
     return render(request, 'Media/index.html',
                   {'template_data': template_data})
+# def index(request):
+#     template_data = {}
+#     template_data['title'] = 'Crafts'
+#     template_data['post'] = post
+#     return render(request, 'Media/index.html',
+#                   {'template_data': template_data})
 
 def show(request, id):
     craft = post[id - 1]
