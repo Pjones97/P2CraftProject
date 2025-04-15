@@ -28,9 +28,28 @@
       <div class="col-md-8 mx-auto text-center">
         <div class="card p-3 shadow-sm">
           <h5>Tutorial Video</h5>
-          <iframe width="100%" height="315"
-                  src="{{ template_data.craft.video }}"
-                  frameborder="0" allowfullscreen></iframe>
+
+            {% if template_data.craft.video %}
+
+                <video width="320" height="240" controls>
+                 <source src={{ template_data.craft.video.url }} type="video/mp4">
+    {#              <source src="movie.ogg" type="video/ogg">#}
+                Your browser does not support the video tag.
+                </video>
+
+            {% else %}
+
+                <video width="320" height="240" controls>
+                     <source src={% static 'videosCraftSiteDir/Countdown8.mp4' %} type="video/mp4">
+    {#              <source src="movie.ogg" type="video/ogg">#}
+                Your browser does not support the video tag.
+                </video>
+
+            {% endif %}
+
+{#          <iframe width="100%" height="315"#}
+{#                  src="{{ template_data.craft.video }}"#}
+{#                  frameborder="0" allowfullscreen></iframe>#}
         </div>
       </div>
     </div>
