@@ -36,6 +36,7 @@ class CraftIdeaModel(models.Model):
     # genre = models.CharField(max_length=200)
     description = models.TextField()
     image = models.ImageField(upload_to='movie_images/', null=True, blank=True)
+
     # rating = models.DecimalField(max_digits=3, default=1, decimal_places=2)
     def __str__(self):
         return str(self.id) + ' - ' + self.title #this isn't working
