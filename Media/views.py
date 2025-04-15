@@ -60,6 +60,9 @@ def index(request):
     else:
         crafts = CraftIdeaModel.objects.all()
     template_data = {}
+    print("This needs to go here!")
+    for craft in crafts:
+        print(craft.id)
     template_data['title'] = 'Crafts' # copied this straight from movies ngl
     template_data['craft'] = crafts
     return render(request, 'Media/index.html',

@@ -28,6 +28,7 @@ from django.contrib import admin
 
 
 class CraftIdeaModel(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     # year = models.IntegerField()
     # price = models.DecimalField(max_digits = 8, decimal_places = 2)
@@ -58,6 +59,7 @@ class CraftIdeaModel(models.Model):
         return thing
         # now = timezone.now()
         # return now > datetime.datetime(year=2025, month = 1, day = 1)
+
 
 class CraftIdeaReview(models.Model):
     id = models.AutoField(primary_key=True)

@@ -21,6 +21,14 @@
             {% else %}
                   <img src="{% static 'img/Default.png' %}" class="card-img-top rounded img-card-200">
             {% endif %}
+
+{##}
+{#            <div class="card-body">#}
+{#              <h5 class="card-title">{{ craft.title }}</h5>#}
+{#              <p class="card-text">{{ craft.description }}</p>#}
+{#              <a href="{% url 'Media.show' craft.id %}" class="btn btn-primary">View Details</a>#}
+{#            </div>#}
+
           <div class="card-body text-center">
             {{ craft.title }}
           </div>
