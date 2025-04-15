@@ -75,12 +75,14 @@ def index(request):
 #                   {'template_data': template_data})
 
 def show(request, id):
+    # alright cool
     craft = CraftIdeaModel.objects.get(id=id)
-    reviews = CraftIdeaReview.objects.get(craft=craft)
+    print("In show the craft id is", craft.id)
+    # reviews = CraftIdeaReview.objects.get(craft=craft)
     template_data = {}
     # template_data['title'] = craft['name']
     template_data['title'] = craft.title
     template_data['craft'] = craft
-    template_data['reviews'] = reviews
+    # template_data['reviews'] = reviews
     return render(request, 'Media/show.html',
                   {'template_data': template_data})
