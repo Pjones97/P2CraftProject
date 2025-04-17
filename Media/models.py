@@ -30,11 +30,8 @@ from django.contrib import admin
 class CraftIdeaModel(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    # year = models.IntegerField()
-    # price = models.DecimalField(max_digits = 8, decimal_places = 2)
-    # director = models.CharField(max_length=200)
-    # genre = models.CharField(max_length=200)
-    userThatUploaded = models.ForeignKey(User, on_delete=models.CASCADE) # okay I have no idea if this is right but hey lets give it a shot
+
+    userThatUploaded = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) # okay I have no idea if this is right but hey lets give it a shot
     description = models.TextField()
     image = models.ImageField(upload_to='movie_images/', null=True, blank=True) # horrible name but what can you do
     video = models.FileField(upload_to='movie_videos/', null=True, blank=True)  # horrible name again...

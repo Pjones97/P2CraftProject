@@ -115,7 +115,25 @@ def create_media(request, id):
         return redirect('Media.show', id=id)
 
 """
+Chat stuff that I have no idea where it goes
+# Read the CraftIdeaModel definition from Media/models.py
+craft_idea_model_path = os.path.join(extract_path, "Media/models.py")
 
+with open(craft_idea_model_path, "r") as f:
+    models_py_content = f.read()
+
+# Display the part of the file that contains CraftIdeaModel
+import re
+
+# Extract the CraftIdeaModel class definition
+match = re.search(r"class CraftIdeaModel\(.*?\):(.+?)(?=\nclass |\Z)", models_py_content, re.DOTALL)
+craft_idea_model_code = match.group(0) if match else "CraftIdeaModel not found."
+
+craft_idea_model_code.strip()
+
+"""
+
+"""
 id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     # year = models.IntegerField()
