@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+# from .models import ....(modelnames)
 # Create your views here.
 
 post = [
@@ -28,9 +28,16 @@ post = [
 
 
 def index(request):
+    # search_term = request.GET.get('search')
+    # if search_term:
+    #     post =
+    #     modelname.objects.filter(name__icontains=search_term)
+    # else:
+    #     posts = modelname.objects.all()
     template_data = {}
-    template_data['title'] = 'Crafts'
-    template_data['post'] = post
+    template_data['title'] = 'Posts'
+    template_data['post'] = post  
+    # Movie.objects.all() ^
     return render(request, 'Media/index.html',
                   {'template_data': template_data})
 
