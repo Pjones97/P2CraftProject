@@ -1,5 +1,4 @@
 from django.contrib import admin
-# input model name for MOVIE PART
-# from .models import Movie
-# admin.site.register(Movie)
-# Register your models here.
+from .models import CraftIdeaModel, CraftIdeaReview
+admin.site.register(CraftIdeaModel)
+admin.site.register(CraftIdeaReview)
