@@ -53,6 +53,7 @@ def show(request, id):
     template_data['title'] = craft.title
     template_data['craft'] = craft
     template_data['reviews'] = reviews
+    template_data['user'] = request.user
     return render(request, 'Media/show.html',
                   {'template_data': template_data})
 
@@ -94,3 +95,30 @@ def delete_review(request, id, review_id):
     review = get_object_or_404(CraftIdeaReview, id=review_id, user=request.user)
     review.delete()
     return redirect('Media.show', id=id)
+
+@login_required
+def edit_craft(request, id):
+    craft = get_object_or_404(CraftIdeaModel, id=id)
+    if request.user != craft.userThatUploaded:
+        return redirect('Media.show', id=id)
+
+    if request.method == 'GET':
+        template_data = {
+            'title': 'Edit Craft',
+            'craft': craft,
+        }
+        return render(request, 'Media/edit_craft.html', {'template_data': template_data})
+
+    elif request.method == 'POST':
+        craft.title = request.POST.get('title', craft.title)
+        craft.description = request.POST.get('description', craft.description)
+        craft.video = request.POST.get('video', craft.video)
+        craft.save()
+        return redirect('Media.show', id=id)
+
+@login_required
+def delete_craft(request, id):
+    craft = get_object_or_404(CraftIdeaModel, id=id)
+    if request.user == craft.userThatUploaded:
+        craft.delete()
+    return redirect('Media.index')
