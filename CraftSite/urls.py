@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('Crafts.urls')),
     path('Media/', include('Media.urls')),
     path('accounts/', include('accounts.urls')),
+    path('chatBot/', include('chatBot.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Crafts',
     'Media',
     'accounts',
+    'chatBot',
 ]
 
 MIDDLEWARE = [
