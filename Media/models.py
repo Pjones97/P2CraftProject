@@ -14,7 +14,7 @@ class CraftIdeaModel(models.Model):
 
     userThatUploaded = models.ForeignKey(User, on_delete=models.CASCADE) # okay I have no idea if this is right but hey lets give it a shot
     description = models.TextField()
-    image = models.ImageField(upload_to='media_images/', null=True, blank=True) # horrible name but what can you do
+    image = models.ImageField(upload_to='movie_images/', null=True, blank=True) # horrible name but what can you do
     video = video = models.URLField(max_length=500, null=True, blank=True)  # horrible name again...
 
     def __str__(self):
