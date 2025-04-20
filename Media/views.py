@@ -113,6 +113,9 @@ def edit_craft(request, id):
         craft.title = request.POST.get('title', craft.title)
         craft.description = request.POST.get('description', craft.description)
         craft.video = request.POST.get('video', craft.video)
+        if 'image' in request.FILES:
+            craft.image = request.FILES['image']  # Update the image field
+
         craft.save()
         return redirect('Media.show', id=id)
 

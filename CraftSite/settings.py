@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Crafts',
     'Media',
     'accounts',
+    'chatBot',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,4 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+YOUTUBE_API_KEY = "AIzaSyBI8SI8Dlykx_e8PyhK5YzTiLX5Nm3aBWs"  # Replace with your actual API key
