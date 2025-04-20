@@ -13,10 +13,12 @@ from django.shortcuts import render, redirect
 # Create your views here.
 # Our views page actually shows what the consumer is viewing
 # a pretty convienient name
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
-    return HttpResponse("Hello, world. You're at the index.")
-
+    # tbh I feel like there is more stuff that I should add
+    return render(request, 'accounts/index.html')
 
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
@@ -26,8 +28,6 @@ from django.contrib.auth import login as auth_login, authenticate, logout as aut
 from .forms import CustomUserCreationForm, CustomErrorList
 from django.shortcuts import redirect
 
-
-from django.contrib.auth.decorators import login_required
 @login_required
 def logout(request):
     auth_logout(request)
