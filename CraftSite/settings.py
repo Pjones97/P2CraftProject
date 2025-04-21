@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 import os
 
 # Google Maps API Key
-GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'AIzaSyD7FSNV6yrCzpa3UNvWVFj0peDy2oKYUuA') # google maps api thing
+# GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'AIzaSyD7FSNV6yrCzpa3UNvWVFj0peDy2oKYUuA') # google maps api thing
+GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'AIzaSyDNAvLo-Yzk7JNBVfIjuWipvTlx7MWWHtg')
 
 # Application definition
 

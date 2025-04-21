@@ -21,6 +21,9 @@ import googlemaps
 from django.conf import settings
 from django.shortcuts import render, redirect
 from .forms import ProfileForm
+import googlemaps
+import json
+from django.conf import settings
 
 def update_profile(request):
     if request.method == 'POST':
@@ -29,12 +32,18 @@ def update_profile(request):
             profile = form.save(commit=False)
             address = form.cleaned_data['location']
             gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
-            geocode_result = gmaps.geocode(address)
+            print("This line works!")
+            geocode_result = gmaps.geocode(address) #This gives an error... saying
+            print("I hope this line works")
+            """
+            ApiError at /accounts/update_profile/
+            REQUEST_DENIED (This API project is not authorized to use this API.)
+            """
             if geocode_result:
                 profile.latitude = geocode_result[0]['geometry']['location']['lat']
                 profile.longitude = geocode_result[0]['geometry']['location']['lng']
             profile.save()
-            return redirect('profile')
+            return redirect('index') #this goes back to index
     else:
         form = ProfileForm(instance=request.user.profile)
     return render(request, 'accounts/update_profile.html', {'form': form})
