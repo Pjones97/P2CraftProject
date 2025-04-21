@@ -338,11 +338,12 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['picture', 'location', 'liked_crafts', 'user_crafts']
+        fields = ['picture', 'location']
+        # Meta defines the things that you update in your profile, so you update your pic, location, and liked_crafts and user_crafts
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
-        for fieldname in ['picture', 'location', 'liked_crafts', 'user_crafts']:
+        for fieldname in ['picture', 'location',]: # took out 'liked_crafts' and 'user_crafts'  on lines 346 and 341!!
             self.fields[fieldname].widget.attrs.update(
                 {'class': 'form-control'}
             )
