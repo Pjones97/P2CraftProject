@@ -63,6 +63,7 @@ urlpatterns = [
 
     path('reset/done/',  ResetComplete.as_view(), name='accounts.password_reset_complete'),
     path('send-test-email/', views.send_test_email, name='send_test_email'),
+    path('update_profile/', views.update_profile, name='update_profile'),
 
 
 ]
