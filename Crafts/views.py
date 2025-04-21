@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+def index(request):
+    template_data = {}
+    template_data['title'] = 'Projexis'
+    return render(request, 'Crafts/index.html', {
+        'template_data': template_data})
+#function renders the Crafts/bot.html template found in Crafts/templates/Crafts

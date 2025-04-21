@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-3">
+    <div class="container">
+      <div class="row mt-3">
+        <div class="col mx-auto mb-3">
+          <h2>Edit Your Post</h2>
+          <hr />
+          <h1>{{ template_data.title }}</h1>
+            <form method="post">
+                {% csrf_token %}
+                <label>Title:</label>
+                <input type="text" name="title" value="{{ template_data.craft.title }}"><br>
+
+                <label>Description:</label>
+                <textarea name="description">{{ template_data.craft.description }}</textarea><br>
+
+                <label>Image:</label>
+                    <input type="file" name="image"><br>  <!-- Image upload field -->
+                {% if template_data.craft.image %}
+                    <img src="{{ template_data.craft.image.url }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br> <!-- Display current image -->
+                {% endif %}
+
+                <label>Video URL:</label>
+                <input type="text" name="video" value="{{ template_data.craft.video }}"><br>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}

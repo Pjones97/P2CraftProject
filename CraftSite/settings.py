@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+print("This is base directory: ", BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'Crafts',
+    'Media',
+    'accounts',
+    'chatBot',
 ]
 
 MIDDLEWARE = [
@@ -52,10 +57,28 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'CraftSite.urls'
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
+EMAIL_PORT = 587  # Use port 587 for secure connections (TLS)
+EMAIL_USE_TLS = True  # Mandatory for Outlook and Gmail
+EMAIL_HOST_USER = 'arkpianist3@gmail.com' # os.getenv('EMAIL_HOST_USER')  # Your Outlook email address
+EMAIL_HOST_PASSWORD = 'ryzlfdgbscdejkfu' # os.getenv('EMAIL_HOST_PASSWORD')  # App password for Outlook
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER # os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)  # Default "from" email
+
+TEMPLATES_ACCOUNTS = os.path.join(BASE_DIR, 'accounts/templates')
+TEMPLATES_MEDIA = os.path.join(BASE_DIR, 'Media/templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'Crafts/templates'),
+            os.path.join(BASE_DIR, 'CraftSite/templates'),  # Add this line to include CraftSite templates
+            TEMPLATES_ACCOUNTS,
+            TEMPLATES_MEDIA,  # need comma if you add more templates
+            os.path.join(BASE_DIR, 'Media_images')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +145,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# need to register the folder containing css file and static files to use them 
+STATICFILES_DIRS = [
+    BASE_DIR / 'CraftSite/static/',
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+YOUTUBE_API_KEY = "AIzaSyBI8SI8Dlykx_e8PyhK5YzTiLX5Nm3aBWs"  # Replace with your actual API key
