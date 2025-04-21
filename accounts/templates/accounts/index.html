@@ -5,6 +5,7 @@
     <img src="/CraftSite/static/img/Default.png" alt="Default Profile Picture" class="rounded-circle" width="100">
   {% endif %}
   <h2>Welcome, {{ user.username }}!</h2>
+    <h2>You are stationed at, {{ user.profile.location }}!</h2>
 {% endif %}
 
 {#{% extends 'base.html' %}#}

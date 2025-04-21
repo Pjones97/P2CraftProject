@@ -41,7 +41,9 @@ def update_profile(request):
             """
             if geocode_result:
                 profile.latitude = geocode_result[0]['geometry']['location']['lat']
+                print("latitdue", profile.latitude)
                 profile.longitude = geocode_result[0]['geometry']['location']['lng']
+                print("longitude", profile.longitude)
             profile.save()
             return redirect('index') #this goes back to index
     else:
