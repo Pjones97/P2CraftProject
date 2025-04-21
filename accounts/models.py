@@ -60,10 +60,23 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from location_field.models.plain import PlainLocationField
+
+
+
+
+from django.db import models
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from Media.models import CraftIdeaModel  # Ensure this import is correct
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
+    liked_crafts = models.ManyToManyField(CraftIdeaModel, related_name='liked_by', blank=True)
+    user_crafts = models.ManyToManyField(CraftIdeaModel, related_name='created_by', blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -76,3 +89,62 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+# from django.db import models
+# from django.contrib.auth.models import User
+# from django.dispatch import receiver
+# from django.db.models.signals import post_save
+#
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+#     location = models.CharField(max_length=100, null=True, blank=True)
+#     liked_crafts = models.ManyToManyField('Media.Craft', related_name='liked_by', blank=True)
+#     user_crafts = models.ManyToManyField('Media.Craft', related_name='created_by', blank=True)
+#
+#     def __str__(self):
+#         return f'{self.user.username} Profile'
+
+
+
+
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+#     # alright i need fields for location, and liked crafts, and also made craft
+#     location = models.
+#     likedCrafts =
+#     userCrafts =
+#
+#     def __str__(self):
+#         return f'{self.user.username} Profile'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+#
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.profile.save()

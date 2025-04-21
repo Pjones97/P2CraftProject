@@ -29,6 +29,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+import os
+
+# Google Maps API Key
+GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'AIzaSyD7FSNV6yrCzpa3UNvWVFj0peDy2oKYUuA') # google maps api thing
 
 # Application definition
 
@@ -39,10 +43,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'location_field.apps.DefaultConfig',
+    # 'django.contrib.gis', # This guy gives an error, so imma try the google maps variation
+
     'Crafts',
     'Media',
     'accounts',
 ]
+
+LOCATION_FIELD = {
+    'map.provider': 'google',
+    'map.zoom': 13,
+    'map.center': {'lat': 0, 'lng': 0},
+    'provider.google.api': '//maps.googleapis.com/maps/api/js?key=AIzaSyD7FSNV6yrCzpa3UNvWVFj0peDy2oKYUuA',  #TODO PLEASE CHANGE THIS!
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

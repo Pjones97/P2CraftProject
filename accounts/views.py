@@ -15,6 +15,57 @@ from django.shortcuts import render, redirect
 # a pretty convienient name
 from django.contrib.auth.decorators import login_required
 
+
+
+import googlemaps
+from django.conf import settings
+from django.shortcuts import render, redirect
+from .forms import ProfileForm
+
+def update_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            address = form.cleaned_data['location']
+            gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+            geocode_result = gmaps.geocode(address)
+            if geocode_result:
+                profile.latitude = geocode_result[0]['geometry']['location']['lat']
+                profile.longitude = geocode_result[0]['geometry']['location']['lng']
+            profile.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'accounts/update_profile.html', {'form': form})
+
+import googlemaps
+from django.conf import settings
+
+def get_location_details(address):
+    gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+    geocode_result = gmaps.geocode(address)
+    return geocode_result
+
+#
+# def update_profile(request):
+#     if request.method == 'POST':
+#         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+#         if form.is_valid():
+#             profile = form.save(commit=False)
+#             address = form.cleaned_data['location']
+#             gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+#             geocode_result = gmaps.geocode(address)
+#             if geocode_result:
+#                 profile.latitude = geocode_result[0]['geometry']['location']['lat']
+#                 profile.longitude = geocode_result[0]['geometry']['location']['lng']
+#             profile.save()
+#             return redirect('profile')
+#     else:
+#         form = ProfileForm(instance=request.user.profile)
+#     return render(request, 'accounts/update_profile.html', {'form': form})
+
+
 @login_required
 def index(request):
     # tbh I feel like there is more stuff that I should add

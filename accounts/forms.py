@@ -67,6 +67,199 @@
 #             user.save()
 #         return user
 
+#
+# from django import forms
+# from django.contrib.auth.forms import UserCreationForm
+# from django.forms.utils import ErrorList
+# from django.utils.safestring import mark_safe
+# from django.contrib.auth.models import User
+# from .models import Profile
+#
+#
+# class CustomErrorList(ErrorList):
+#     def __str__(self):
+#         if not self:
+#             return ''
+#         return mark_safe(''.join([
+#             f'<div class="alert alert-danger" role="alert">{e}</div>' for e in self]))
+#
+#
+# class CustomUserCreationForm(UserCreationForm):
+#     email = forms.EmailField(
+#         required=True,
+#         widget=forms.EmailInput(attrs={
+#             'class': 'form-control',
+#             'placeholder': 'Enter your email address',
+#         }),
+#         help_text="Please enter a valid email address.",
+#     )
+#
+#     picture = forms.ImageField(required=False, widget=forms.FileInput(attrs={
+#         'class': 'form-control',
+#     }))
+#
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email', 'password1', 'password2']
+#
+#     def __init__(self, *args, **kwargs):
+#         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+#         for fieldname in ['username', 'password1', 'password2', 'email']:
+#             self.fields[fieldname].help_text = None
+#             self.fields[fieldname].widget.attrs.update(
+#                 {'class': 'form-control'}
+#             )
+#
+#     def save(self, commit=True):
+#         user = super().save(commit=False)
+#         user.email = self.cleaned_data['email']
+#         if commit:
+#             user.save()
+#             profile = Profile.objects.get(user=user)
+#             if self.cleaned_data['picture']:
+#                 profile.picture = self.cleaned_data['picture']
+#                 profile.save()
+#         return user
+
+
+#
+# from django import forms
+# from django.contrib.auth.forms import UserCreationForm
+# from django.forms.utils import ErrorList
+# from django.utils.safestring import mark_safe
+# from django.contrib.auth.models import User
+# from .models import Profile
+#
+# class CustomErrorList(ErrorList):
+#     def __str__(self):
+#         if not self:
+#             return ''
+#         return mark_safe(''.join([
+#             f'<div class="alert alert-danger" role="alert">{e}</div>' for e in self
+#         ]))
+#
+# class CustomUserCreationForm(UserCreationForm):
+#     email = forms.EmailField(
+#         required=True,
+#         widget=forms.EmailInput(attrs={
+#             'class': 'form-control',
+#             'placeholder': 'Enter your email address',
+#         }),
+#         help_text="Please enter a valid email address.",
+#     )
+#     picture = forms.ImageField(required=False, widget=forms.FileInput(attrs={
+#         'class': 'form-control',
+#     }))
+#
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email', 'password1', 'password2']
+#
+#     def __init__(self, *args, **kwargs):
+#         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+#         for fieldname in ['username', 'password1', 'password2', 'email']:
+#             self.fields[fieldname].help_text = None
+#             self.fields[fieldname].widget.attrs.update(
+#                 {'class': 'form-control'}
+#             )
+#
+#     def save(self, commit=True):
+#         user = super().save(commit=False)
+#         user.email = self.cleaned_data['email']
+#         if commit:
+#             user.save()
+#         profile = Profile.objects.get(user=user)
+#         if self.cleaned_data['picture']:
+#             profile.picture = self.cleaned_data['picture']
+#         profile.save()
+#         return user
+#
+# class ProfileForm(forms.ModelForm):
+#     location = forms.CharField(
+#         required=False,
+#         widget=forms.TextInput(attrs={
+#             'class': 'form-control',
+#             'placeholder': 'Enter your location',
+#         })
+#     )
+#
+#     class Meta:
+#         model = Profile
+#         fields = ['picture', 'location', 'liked_crafts', 'user_crafts']
+#
+#     def __init__(self, *args, **kwargs):
+#         super(ProfileForm, self).__init__(*args, **kwargs)
+#         for fieldname in ['picture', 'location', 'liked_crafts', 'user_crafts']:
+#             self.fields[fieldname].widget.attrs.update(
+#                 {'class': 'form-control'}
+#             )
+
+
+
+
+
+# from django import forms
+# from django.contrib.auth.forms import UserCreationForm
+# from django.forms.utils import ErrorList
+# from django.utils.safestring import mark_safe
+# from django.contrib.auth.models import User
+# from .models import Profile
+#
+# class CustomErrorList(ErrorList):
+#     def __str__(self):
+#         if not self:
+#             return ''
+#         return mark_safe(''.join([
+#             f'<div class="alert alert-danger" role="alert">{e}</div>' for e in self
+#         ]))
+#
+# class CustomUserCreationForm(UserCreationForm):
+#     email = forms.EmailField(
+#         required=True,
+#         widget=forms.EmailInput(attrs={
+#             'class': 'form-control',
+#             'placeholder': 'Enter your email address',
+#         }),
+#         help_text="Please enter a valid email address.",
+#     )
+#     picture = forms.ImageField(required=False, widget=forms.FileInput(attrs={
+#         'class': 'form-control',
+#     }))
+#     location = forms.CharField(
+#         required=False,
+#         widget=forms.TextInput(attrs={
+#             'class': 'form-control',
+#             'placeholder': 'Enter your location',
+#         })
+#     )
+#
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email', 'password1', 'password2', 'picture', 'location']
+#
+#     def __init__(self, *args, **kwargs):
+#         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+#         for fieldname in ['username', 'password1', 'password2', 'email', 'picture', 'location']:
+#             self.fields[fieldname].help_text = None
+#             self.fields[fieldname].widget.attrs.update(
+#                 {'class': 'form-control'}
+#             )
+#
+#     def save(self, commit=True):
+#         user = super().save(commit=False)
+#         user.email = self.cleaned_data['email']
+#         if commit:
+#             user.save()
+#         profile = Profile.objects.get(user=user)
+#         if self.cleaned_data['picture']:
+#             profile.picture = self.cleaned_data['picture']
+#         if self.cleaned_data['location']:
+#             profile.location = self.cleaned_data['location']
+#         profile.save()
+#         return user
+
+
+
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -76,13 +269,17 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 
+from django import forms
+from .models import Profile
+
+
 class CustomErrorList(ErrorList):
     def __str__(self):
         if not self:
             return ''
         return mark_safe(''.join([
-            f'<div class="alert alert-danger" role="alert">{e}</div>' for e in self]))
-
+            f'<div class="alert alert-danger" role="alert">{e}</div>' for e in self
+        ]))
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(
@@ -93,18 +290,24 @@ class CustomUserCreationForm(UserCreationForm):
         }),
         help_text="Please enter a valid email address.",
     )
-
     picture = forms.ImageField(required=False, widget=forms.FileInput(attrs={
         'class': 'form-control',
     }))
+    location = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your location',
+        })
+    )
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'picture', 'location']
 
     def __init__(self, *args, **kwargs):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
-        for fieldname in ['username', 'password1', 'password2', 'email']:
+        for fieldname in ['username', 'password1', 'password2', 'email', 'picture', 'location']:
             self.fields[fieldname].help_text = None
             self.fields[fieldname].widget.attrs.update(
                 {'class': 'form-control'}
@@ -115,8 +318,31 @@ class CustomUserCreationForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         if commit:
             user.save()
-            profile = Profile.objects.get(user=user)
-            if self.cleaned_data['picture']:
-                profile.picture = self.cleaned_data['picture']
-                profile.save()
+        profile = Profile.objects.get(user=user)
+        if self.cleaned_data['picture']:
+            profile.picture = self.cleaned_data['picture']
+        if self.cleaned_data['location']:
+            profile.location = self.cleaned_data['location']
+        profile.save()
         return user
+
+
+class ProfileForm(forms.ModelForm):
+    location = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your location',
+        })
+    )
+
+    class Meta:
+        model = Profile
+        fields = ['picture', 'location', 'liked_crafts', 'user_crafts']
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        for fieldname in ['picture', 'location', 'liked_crafts', 'user_crafts']:
+            self.fields[fieldname].widget.attrs.update(
+                {'class': 'form-control'}
+            )
