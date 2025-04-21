@@ -75,8 +75,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
-    # liked_crafts = models.ManyToManyField(CraftIdeaModel, related_name='liked_by', blank=True)
-    # user_crafts = models.ManyToManyField(CraftIdeaModel, related_name='created_by', blank=True)
+    liked_crafts = models.ManyToManyField(CraftIdeaModel, related_name='liked_by', blank=True)
+    user_crafts = models.ManyToManyField(CraftIdeaModel, related_name='created_by', blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'

@@ -6,6 +6,24 @@
   {% endif %}
   <h2>Welcome, {{ user.username }}!</h2>
     <h2>You are stationed at, {{ user.profile.location }}!</h2>
+
+
+{#    {% for likedCraft in user.profile.liked_crafts %}#}
+        <div class="col-md-4 col-lg-3 mb-2">
+          <div class="p-2 card align-items-center pt-4">
+
+{#            {% if user.profile.liked_craft %}#}
+                  <h3>You like the {{ user.profile.liked_craft }}!</h3>
+
+{#            {% else %}#}
+                <h3>This is what you don't like </h3>
+{#            {% endif %}#}
+
+
+          </div>
+        </div>
+{#      {% endfor %}#}
+
 {% endif %}
 
 {#{% extends 'base.html' %}#}
