@@ -122,3 +122,67 @@ def delete_craft(request, id):
     if request.user == craft.userThatUploaded:
         craft.delete()
     return redirect('Media.index')
+
+
+# def create_craft(request):
+#     craft = CraftIdeaModel() # create a new craft
+#     craft.userThatUploaded = request.user
+#     print(craft.id)
+#     # if request.user != craft.userThatUploaded:
+#     #     return redirect('Media.show', id=id)
+#
+#     if request.method == 'GET':
+#         # This is when you are filling out something
+#         print("You went inside GET")
+#         template_data = {
+#             'title': 'Edit Craft',
+#             'craft': craft,
+#         }
+#         return render(request, 'Media/edit_craft.html', {'template_data': template_data})
+#
+#     elif request.method == 'POST':
+#         # This is when you are posting it to the website
+#         print("You went inside POST")
+#         craft.title = request.POST.get('title', craft.title)
+#         print(craft.title)
+#         craft.description = request.POST.get('description', craft.description)
+#         print(craft.description)
+#         craft.video = request.POST.get('video', craft.video)
+#         print(craft.video)
+#         craft.image = request.POST.get('image', craft.image)
+#         print(craft.id)
+#         craft.save()
+#         return redirect('Media.show', id=craft.id)
+
+@login_required
+def create_craft(request):
+    if request.method == 'GET':
+        template_data = {
+            'title': 'Create New Craft',
+            'craft': CraftIdeaModel(),  # Empty craft for the form
+        }
+        return render(request, 'Media/create_craft.html', {'template_data': template_data})
+
+    elif request.method == 'POST':
+        # Create new craft instance
+        craft = CraftIdeaModel()
+        craft.userThatUploaded = request.user
+        craft.title = request.POST.get('title', '')
+        craft.description = request.POST.get('description', '')
+        craft.video = request.POST.get('video', '')
+
+        # Handle image upload
+        if 'image' in request.FILES:
+            craft.image = request.FILES['image']
+
+        try:
+            craft.save()
+            return redirect('Media.show', id=craft.id)
+        except Exception as e:
+            # Handle any errors during save
+            template_data = {
+                'title': 'Create New Craft',
+                'craft': craft,
+                'error': f'Error creating craft: {str(e)}'
+            }
+            return render(request, 'Media/create_craft.html', {'template_data': template_data})
