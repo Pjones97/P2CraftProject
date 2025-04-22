@@ -266,6 +266,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.forms.utils import ErrorList
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
+
+from Media.models import CraftIdeaModel
 from .models import Profile
 
 
@@ -333,6 +335,22 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Enter your location',
+        })
+    )
+
+    liked_crafts = forms.ModelMultipleChoiceField(
+        queryset=CraftIdeaModel.objects.all(),
+        required=False,
+        widget=forms.SelectMultiple(attrs={
+            'class': 'form-control',
+        })
+    )
+
+    user_crafts = forms.ModelMultipleChoiceField(
+        queryset=CraftIdeaModel.objects.all(),
+        required=False,
+        widget=forms.SelectMultiple(attrs={
+            'class': 'form-control',
         })
     )
 

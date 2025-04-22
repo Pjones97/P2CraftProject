@@ -25,30 +25,62 @@ import googlemaps
 import json
 from django.conf import settings
 
+
 def update_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             profile = form.save(commit=False)
             address = form.cleaned_data['location']
-            gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
-            print("This line works!")
-            geocode_result = gmaps.geocode(address) #This gives an error... saying
-            print("I hope this line works")
-            """
-            ApiError at /accounts/update_profile/
-            REQUEST_DENIED (This API project is not authorized to use this API.)
-            """
-            if geocode_result:
-                profile.latitude = geocode_result[0]['geometry']['location']['lat']
-                print("latitdue", profile.latitude)
-                profile.longitude = geocode_result[0]['geometry']['location']['lng']
-                print("longitude", profile.longitude)
+
+            # Handle Google Maps geocoding if needed
+            if address and hasattr(settings, 'GOOGLE_MAPS_API_KEY'):
+                try:
+                    gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+                    geocode_result = gmaps.geocode(address)
+                    if geocode_result:
+                        profile.latitude = geocode_result[0]['geometry']['location']['lat']
+                        profile.longitude = geocode_result[0]['geometry']['location']['lng']
+                except Exception as e:
+                    # Handle API errors gracefully
+                    print(f"Geocoding error: {e}")
+
+            # Save the profile first
             profile.save()
-            return redirect('index') #this goes back to index
+
+            # Save many-to-many fields
+            form.save_m2m()
+
+            return redirect('index')
     else:
         form = ProfileForm(instance=request.user.profile)
+
     return render(request, 'accounts/update_profile.html', {'form': form})
+
+# def update_profile(request):
+#     if request.method == 'POST':
+#         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+#         if form.is_valid():
+#             profile = form.save(commit=False)
+#             address = form.cleaned_data['location']
+#             gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+#             print("This line works!")
+#             geocode_result = gmaps.geocode(address) #This gives an error... saying
+#             print("I hope this line works")
+#             """
+#             ApiError at /accounts/update_profile/
+#             REQUEST_DENIED (This API project is not authorized to use this API.)
+#             """
+#             if geocode_result:
+#                 profile.latitude = geocode_result[0]['geometry']['location']['lat']
+#                 print("latitdue", profile.latitude)
+#                 profile.longitude = geocode_result[0]['geometry']['location']['lng']
+#                 print("longitude", profile.longitude)
+#             profile.save()
+#             return redirect('index') #this goes back to index
+#     else:
+#         form = ProfileForm(instance=request.user.profile)
+#     return render(request, 'accounts/update_profile.html', {'form': form})
 
 import googlemaps
 from django.conf import settings
@@ -80,7 +112,19 @@ def get_location_details(address):
 @login_required
 def index(request):
     # tbh I feel like there is more stuff that I should add
-    return render(request, 'accounts/index.html')
+
+    # Get the user's liked crafts and user crafts
+    liked_crafts = request.user.profile.liked_crafts.all()
+    user_crafts = request.user.profile.user_crafts.all()
+    for thing in liked_crafts:
+        print("Liked Craft:", thing)
+    for thing2 in user_crafts:
+        print("Your Craft", thing2)
+    context = {
+        'liked_crafts': liked_crafts,
+        'user_crafts': user_crafts,
+    }
+    return render(request, 'accounts/index.html', context)
 
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm

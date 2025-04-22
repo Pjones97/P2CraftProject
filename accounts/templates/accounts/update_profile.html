@@ -1,5 +1,53 @@
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Update Profile</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Profile Picture -->
+        <div class="form-group">
+            <label>Profile Picture</label>
+            {% if form.instance.picture %}
+                <img src="{{ form.instance.picture.url }}" class="img-thumbnail mb-2" width="100">
+            {% endif %}
+            {{ form.picture }}
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+            <label>Location</label>
+            {{ form.location }}
+        </div>
+
+        <!-- Liked Crafts -->
+        <div class="form-group">
+            <label>Liked Crafts</label>
+            {{ form.liked_crafts }}
+            <small class="form-text text-muted">
+                Hold down "Control" (or "Command" on Mac) to select multiple options.
+            </small>
+        </div>
+
+        <!-- User Crafts -->
+        <div class="form-group">
+            <label>Your Created Crafts</label>
+            {{ form.user_crafts }}
+            <small class="form-text text-muted">
+                Hold down "Control" (or "Command" on Mac) to select multiple options.
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
+
+{#<form method="post" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <button type="submit">Save</button>#}
+{#</form>#}
