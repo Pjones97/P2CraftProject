@@ -5,17 +5,19 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib import admin
+
+
 # Create your models here.
 
 class CraftIdeaModel(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    
 
-    userThatUploaded = models.ForeignKey(User, on_delete=models.CASCADE) # okay I have no idea if this is right but hey lets give it a shot
+    userThatUploaded = models.ForeignKey(User, on_delete=models.CASCADE)  # okay I have no idea if this is right but hey lets give it a shot
+    # Profile.user = userThatUploaded
     description = models.TextField()
     image = models.ImageField(upload_to='movie_images/', null=True, blank=True) # horrible name but what can you do
-    video = video = models.URLField(max_length=500, null=True, blank=True)  # horrible name again...
+    video = models.URLField(max_length=500, null=True, blank=True)  # horrible name again...
 
     def __str__(self):
         return str(self.id) + ' - ' + self.title #this isn't working
