@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            {% if thisProfile.picture %}
+                <img src="{{ thisProfile.picture.url }}" alt="Profile Picture" class="rounded-circle" width="100">
+            {% else %}
+                <img src="/CraftSite/static/img/Default.png" alt="Default Profile Picture" class="rounded-circle" width="100">
+            {% endif %}
+            <h2>{{ thisProfile.user.username }}</h2>
+        </div>
+        <div class="col-md-8">
+            <h3>This User's Created Crafts:</h3>
+            {% if user_crafts %}
+                <div class="row">
+                    {% for craft in user_crafts %}
+                        <div class="col-md-4 col-lg-3 mb-2">
+                            <div class="p-2 card align-items-center pt-4">
+                                {% if craft.image %}
+                                    <img src="{{ craft.image.url }}" class="card-img-top rounded img-card-200" alt="{{ craft.title }}">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ craft.title }}</h5>
+                                    <p class="card-text">{{ craft.description|truncatechars:100 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>This user hasn't created any crafts yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+{#{% if user.is_authenticated %}#}
+{#  {% if thisProfile.picture %}#}
+{#    <img src="{{ thisProfile.picture.url }}" alt="Profile Picture" class="rounded-circle" width="100">#}
+{#  {% else %}#}
+{#    <img src="/CraftSite/static/img/Default.png" alt="Default Profile Picture" class="rounded-circle" width="100">#}
+{#  {% endif %}#}
+{#  <h2>You are viewing, {{ thisProfile.user }}!</h2>#}
+{#  <h2>You are stationed at, {{ user.profile.location }}!</h2>#}
+{##}
+{#  <div class="crafts-section">#}
+{#    <h3>Your Liked Crafts:</h3>#}
+{#    {% if liked_crafts %}#}
+{#      <div class="row">#}
+{#        {% for craft in liked_crafts %}#}
+{#          <div class="col-md-4 col-lg-3 mb-2">#}
+{#            <div class="p-2 card align-items-center pt-4">#}
+{#              {% if craft.image %}#}
+{#                <img src="{{ craft.image.url }}" class="card-img-top rounded img-card-200" alt="{{ craft.title }}">#}
+{#              {% endif %}#}
+{#              <div class="card-body">#}
+{#                <h5 class="card-title">{{ craft.title }}</h5>#}
+{#                <p class="card-text">{{ craft.description|truncatechars:100 }}</p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#    {% else %}#}
+{#      <p>You haven't liked any crafts yet.</p>#}
+{#    {% endif %}#}
+{#  </div>#}
+{##}
+{#  <div class="crafts-section">#}
+{#    <h3>This User's Created Crafts:</h3>#}
+{#    {% if thisProfile.user_crafts %}#}
+{#      <div class="row">#}
+{#        {% for craft in thisProfile.user_crafts %}#}
+{#          <div class="col-md-4 col-lg-3 mb-2">#}
+{#            <div class="p-2 card align-items-center pt-4">#}
+{#              {% if craft.image %}#}
+{#                <img src="{{ craft.image.url }}" class="card-img-top rounded img-card-200" alt="{{ craft.title }}">#}
+{#              {% endif %}#}
+{#              <div class="card-body">#}
+{#                <h5 class="card-title">{{ craft.title }}</h5>#}
+{#                <p class="card-text">{{ craft.description|truncatechars:100 }}</p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        {% endfor %}#}
+{#      </div>#}
+{#    {% else %}#}
+{#      <p>You haven't created any crafts yet.</p>#}
+{#    {% endif %}#}
+{#  </div>#}
+{#{% endif %}#}
