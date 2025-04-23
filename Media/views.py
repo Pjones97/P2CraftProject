@@ -31,6 +31,12 @@ from .models import CraftIdeaModel, CraftIdeaReview
 from django.contrib.auth.decorators import login_required
 
 
+from Media.models import CraftIdeaModel
+from accounts.models import Profile
+
+
+
+
 def index(request):
     search_term = request.GET.get('search')
     if search_term:
@@ -160,32 +166,48 @@ def delete_craft(request, id):
 @login_required
 def create_craft(request):
     if request.method == 'GET':
+        print("The Get method started")
         template_data = {
             'title': 'Create New Craft',
             'craft': CraftIdeaModel(),  # Empty craft for the form
         }
+        print("The Get method returned")
         return render(request, 'Media/create_craft.html', {'template_data': template_data})
 
     elif request.method == 'POST':
         # Create new craft instance
+        print("The POST method started")
         craft = CraftIdeaModel()
         craft.userThatUploaded = request.user
         craft.title = request.POST.get('title', '')
         craft.description = request.POST.get('description', '')
         craft.video = request.POST.get('video', '')
 
+
+
+        print("The handling image")
         # Handle image upload
         if 'image' in request.FILES:
             craft.image = request.FILES['image']
 
         try:
+            print("In try method!")
             craft.save()
+
+            print("The Adding the profile if saving craft was successful!")
+            profile = Profile.objects.get(user=request.user)
+            profile.user_crafts.add(craft)
+
+
+            print("about to return redirect")
             return redirect('Media.show', id=craft.id)
         except Exception as e:
+            print("Exception was thrown here in the thing hrds")
             # Handle any errors during save
             template_data = {
                 'title': 'Create New Craft',
                 'craft': craft,
                 'error': f'Error creating craft: {str(e)}'
             }
+            print("About to return render")
             return render(request, 'Media/create_craft.html', {'template_data': template_data})
