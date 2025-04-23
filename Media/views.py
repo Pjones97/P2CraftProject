@@ -52,6 +52,8 @@ def index(request):
     return render(request, 'Media/index.html',
                   {'template_data': template_data})
 
+
+
 # views.py
 def show(request, id):
     craft = CraftIdeaModel.objects.get(id=id)
@@ -65,7 +67,24 @@ def show(request, id):
         profile = Profile.objects.get(user=request.user)
         template_data['profile'] = profile
         template_data['is_liked'] = profile.liked_crafts.filter(id=craft.id).exists()
+        template_data['can_like'] = request.user.id != craft.userThatUploaded.id
     return render(request, 'Media/show.html', {'template_data': template_data})
+
+
+# views.py
+# def show(request, id):
+#     craft = CraftIdeaModel.objects.get(id=id)
+#     reviews = CraftIdeaReview.objects.filter(craft=craft)
+#     template_data = {}
+#     template_data['title'] = craft.title
+#     template_data['craft'] = craft
+#     template_data['reviews'] = reviews
+#     template_data['user'] = request.user
+#     if request.user.is_authenticated:
+#         profile = Profile.objects.get(user=request.user)
+#         template_data['profile'] = profile
+#         template_data['is_liked'] = profile.liked_crafts.filter(id=craft.id).exists()
+#     return render(request, 'Media/show.html', {'template_data': template_data})
 
 
 # views.py
