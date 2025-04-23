@@ -15,7 +15,11 @@
                 <label>Description:</label>
                 <textarea name="description">{{ template_data.craft.description }}</textarea><br>
 
-
+                <label>Image:</label>
+                    <input type="file" name="image"><br>  <!-- Image upload field -->
+                {% if template_data.craft.image %}
+                    <img src="{{ template_data.craft.image.url }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br> <!-- Display current image -->
+                {% endif %}
 
                 <label>Video URL:</label>
                 <input type="text" name="video" value="{{ template_data.craft.video }}"><br>

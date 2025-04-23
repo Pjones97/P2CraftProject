@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projexis Bot</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <style>
+    .swiper {
+      width: 90%;
+      padding: 20px;
+      margin: auto;
+    }
+    .swiper-slide {
+      background: #f4f4f4;
+      border-radius: 12px;
+      text-align: center;
+      padding: 10px;
+    }
+    .swiper-slide img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .swiper-slide p {
+      margin-top: 5px;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to the Projexis Chat bot Page</h1>
+  <p>Converse with our bot to brainstorm some ideas! Once you've decided, tell us so we can help you plan your new project!</p>
+  <p>If you already have an idea feel free to skip the bot and tell us your idea so we can help out!</p>
+  <p>Chat with the bot:</p>
+  <form id="ideaForm">
+    <label for="idea">What is your final project idea?</label>
+    <input type="text" id="idea" name="idea" required>
+    <input type="submit" value="Submit">
+  </form>
+
+  <hr />
+
+  <div id="video-section" style="display:none;">
+    <h2>Tutorials for Your Project Idea</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper" id="video-carousel">
+        <!-- YouTube slides get inserted here -->
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    document.getElementById('ideaForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const idea = document.getElementById('idea').value;
+
+      const response = await fetch(`/chatBot/api/youtube/?q=${encodeURIComponent(idea)}`);
+      const data = await response.json();
+
+      const container = document.getElementById("video-carousel");
+      container.innerHTML = ""; // Clear old videos
+
+      if (data.videos && data.videos.length > 0) {
+        data.videos.forEach(video => {
+          const slide = document.createElement("div");
+          slide.className = "swiper-slide";
+          slide.innerHTML = `
+            <a href="https://www.youtube.com/watch?v=${video.videoId}" target="_blank">
+              <img src="${video.thumbnail}" alt="${video.title}" />
+              <p>${video.title}</p>
+            </a>
+          `;
+          container.appendChild(slide);
+        });
+
+        document.getElementById('video-section').style.display = 'block';
+
+        new Swiper('.swiper', {
+          slidesPerView: 2.5,
+          spaceBetween: 15,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      } else {
+        container.innerHTML = "<p>No videos found. Try another idea!</p>";
+        document.getElementById('video-section').style.display = 'block';
+      }
+    });
+  </script>
+
+  <h2>Places to Purchase Material Near You</h2>
+
+</body>
+</html>

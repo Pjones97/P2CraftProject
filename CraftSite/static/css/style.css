@@ -11,16 +11,92 @@
 }
 
 .img-card-200 {
-  width: fit-content;
-  max-height: 200px;
+  width: 100%;
+  height:200px;
+  object-fit:cover;
+  object-position: center;
 }
-
-
 
 .img-card-400 {
   width: fit-content;
   max-height: 400px;
 }
 
+/* ===== Color Palette ===== */
+:root {
+  --beige: #E8E1DA;
+  --orange: #FEB856;
+}
 
+/* ===== Base Styles ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--beige);
+  color: #333;
+  margin: 0;
+}
 
+/* ===== Universal Header Styles ===== */
+.site-header {
+  background-color: var(--orange);
+  color: white;
+  font-family: 'Playfair Display'; 
+  text-align: center;
+  padding: 3rem 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.site-header h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.site-header p {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ===== Footer (Optional) ===== */
+.site-footer {
+  background-color: var(--orange);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: #f1f1f1;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 32px;
+  text-decoration: none;
+  font-size: 24px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #FEB856;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 36px;
+  color: #FEB856;
+}
