@@ -90,7 +90,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-
+# C:\Users\ishakir\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\googlemaps\client.py
 # from django.db import models
 # from django.contrib.auth.models import User
 # from django.dispatch import receiver
