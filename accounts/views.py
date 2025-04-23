@@ -126,6 +126,21 @@ def index(request):
     }
     return render(request, 'accounts/index.html', context)
 
+# @login_required  #anyone can see other people's crafts
+# views 1.py
+from django.shortcuts import render, get_object_or_404
+from accounts.models import Profile
+
+def view_profile(request, id):
+    thisProfile = get_object_or_404(Profile, pk=id)
+    thisUser_crafts = thisProfile.user_crafts.all()
+    context = {
+        'thisProfile': thisProfile,
+        'user_crafts': thisUser_crafts,
+    }
+    return render(request, 'accounts/view_profile.html', context)
+
+
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
