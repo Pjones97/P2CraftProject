@@ -53,6 +53,40 @@ def index(request):
                   {'template_data': template_data})
 
 
+# views 2.py
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
+
+
+def search_users(request):
+    search_term = request.GET.get('search')
+    if search_term:
+        users = User.objects.filter(username__icontains=search_term)
+        profiles = Profile.objects.filter(user__in=users)
+    else:
+        profiles = Profile.objects.all()
+
+    template_data = {}
+    template_data['title'] = 'Users'
+    template_data['profiles'] = profiles
+
+    return render(request, 'Media/search_users.html', {'template_data': template_data})
+
+
+# def search_users(request):
+#     search_term = request.GET.get('search')
+#     if search_term:
+#         profiles = Profile.objects.filter(user__icontains=search_term)
+#     else:
+#         profiles = Profile.objects.all()
+#     template_data = {}
+#     print("This needs to go here!")
+#     for user in profiles:
+#         print(user.id)
+#     template_data['title'] = 'Users' # copied this straight from movies ngl
+#     template_data['profiles'] = profiles
+#     return render(request, 'Media/search_users.html',
+#                   {'template_data': template_data})
 
 # views.py
 def show(request, id):

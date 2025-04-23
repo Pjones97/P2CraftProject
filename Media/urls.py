@@ -15,4 +15,6 @@ urlpatterns = [
 path('create/', views.create_craft, name='CraftIdeaModel.create_craft'),
 path('craft/<int:craft_id>/toggle_like/', views.toggle_like, name='toggle_like'),
 
+path('search_users/', views.search_users, name='search_users'),
+
 ]
