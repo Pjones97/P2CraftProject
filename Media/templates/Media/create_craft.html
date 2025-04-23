@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-3">
+    <div class="container">
+      <div class="row mt-3">
+        <div class="col mx-auto mb-3">
+          <h2>Create Your Craft Post</h2>
+          <hr />
+          <h1>{{ template_data.title }}</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Title:</label>
+                    <input type="text" name="title" value="{{ template_data.craft.title }}" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea name="description" class="form-control">{{ template_data.craft.description }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Craft Image:</label>
+                    <input type="file" name="image" class="form-control-file">
+                    <small class="form-text text-muted">Upload an image of your craft</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Video URL:</label>
+                    <input type="text" name="video" value="{{ template_data.craft.video }}" class="form-control">
+                    <small class="form-text text-muted">Optional: Paste a YouTube or other video URL</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Craft</button>
+                <a href="{% url 'Media.index' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{#{% extends 'base.html' %}#}
+{#{% block content %}#}
+{#<div class="p-3">#}
+{#    <div class="container">#}
+{#      <div class="row mt-3">#}
+{#        <div class="col mx-auto mb-3">#}
+{#          <h2>Create Your Post!!!!</h2>#}
+{#          <hr />#}
+{#          <h1>{{ template_data.title }}</h1>#}
+{#            <form method="post">#}
+{#                {% csrf_token %}#}
+{#                <label>Title:</label>#}
+{#                <input type="text" name="title" value="{{ template_data.craft.title }}"><br>#}
+{##}
+{#                <label>Description:</label>#}
+{#                <textarea name="description">{{ template_data.craft.description }}</textarea><br>#}
+{##}
+{##}
+{#                I don't know how to add a upload picture button here#}
+{#                <div class="form-group">#}
+{#                  <label>New Craft Picture</label>#}
+{#                     {% if form.instance.picture %}#}
+{#                        <img src="{{ form.instance.picture.url }}" class="img-thumbnail mb-2" width="100">#}
+{#                     {% endif %}#}
+{#                     {{ form.picture }}#}
+{#                 </div>#}
+{##}
+{##}
+{#                <label>Video URL:</label>#}
+{#                <input type="text" name="video" value="{{ template_data.craft.video }}"><br>#}
+{##}
+{#                <button type="submit">Save Changes</button>#}
+{#            </form>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  {% endblock content %}#}

@@ -12,4 +12,5 @@ urlpatterns = [
         views.delete_review, name='CraftIdeaModel.delete_review'),
     path('<int:id>/edit/', views.edit_craft, name='CraftIdeaModel.edit_craft'),
     path('<int:id>/delete/', views.delete_craft, name='CraftIdeaModel.delete_craft'),
+path('create/', views.create_craft, name='CraftIdeaModel.create_craft'),
 ]
