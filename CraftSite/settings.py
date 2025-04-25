@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'Media',
     'accounts',
     'chatBot',
+
 ]
 
 LOCATION_FIELD = {
@@ -169,3 +170,5 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 YOUTUBE_API_KEY = "AIzaSyBI8SI8Dlykx_e8PyhK5YzTiLX5Nm3aBWs"  # Replace with your actual API key
+
+OPENAI_API_KEY = "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"  

@@ -1,0 +1,7 @@
+
+<div id="chatbox">
+    {% for message in messages %}
+    <div class="user-message">User: {{ message.user_message }}</div>
+    <div class="bot-message">Bot: {{ message.bot_message }}</div>
+    {% endfor %}
+</div>
