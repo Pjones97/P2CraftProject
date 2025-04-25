@@ -1,20 +1,121 @@
 {% extends 'base.html' %}
 {% block content %}
-<header class="masthead bg-index text-white text-center
-           py-4">
-  <div class="container d-flex align-items-center flex-
-  column pt-2">
-    <h2>Your Account Page</h2>
-    <p>Welcome {{ user.username }}</p>
-  </div>
-</header>
-<div class="p-3">
-  <div class="container">
-    <div class="row mt-3">
-      <div class="col mx-auto text-center mb-3">
-        <h4>Here you can navigate to your liked posts, your old comments, and your posts too!</h4>
+<!--  block content -->
+{% load static %}
+
+{% if user.is_authenticated %}
+  {% if user.profile.picture %}
+    <img src="{{ user.profile.picture.url }}" alt="Profile Picture" class="rounded-circle" width="100">
+  {% else %}
+    <img src="/CraftSite/static/img/Default.png" alt="Default Profile Picture" class="rounded-circle" width="100">
+  {% endif %}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <h2>You are stationed at, {{ user.profile.location }}!</h2>
+
+  <div class="crafts-section">
+    <h3>Your Liked Crafts:</h3>
+    {% if liked_crafts %}
+      <div class="row">
+        {% for craft in liked_crafts %}
+          <div class="col-md-4 col-lg-3 mb-2">
+            <div class="p-2 card align-items-center pt-4">
+              {% if craft.image %}
+                <img src="{{ craft.image.url }}" class="card-img-top rounded img-card-200" alt="{{ craft.title }}">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ craft.title }}</h5>
+                <p class="card-text">{{ craft.description|truncatechars:100 }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
       </div>
-    </div>
+    {% else %}
+      <p>You haven't liked any crafts yet.</p>
+    {% endif %}
   </div>
-</div>
+
+  <div class="crafts-section">
+    <h3>Your Created Crafts:</h3>
+    {% if user_crafts %}
+      <div class="row">
+        {% for craft in user_crafts %}
+          <div class="col-md-4 col-lg-3 mb-2">
+            <div class="p-2 card align-items-center pt-4">
+              {% if craft.image %}
+                <img src="{{ craft.image.url }}" class="card-img-top rounded img-card-200" alt="{{ craft.title }}">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ craft.title }}</h5>
+                <p class="card-text">{{ craft.description|truncatechars:100 }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>You haven't created any crafts yet.</p>
+    {% endif %}
+  </div>
+{% endif %}
 {% endblock content %}
+
+
+{#{% if user.is_authenticated %}#}
+{#  {% if user.profile.picture %}#}
+{#    <img src="{{ user.profile.picture.url }}" alt="Profile Picture" class="rounded-circle" width="100">#}
+{#  {% else %}#}
+{#    <img src="/CraftSite/static/img/Default.png" alt="Default Profile Picture" class="rounded-circle" width="100">#}
+{#  {% endif %}#}
+{#  <h2>Welcome, {{ user.username }}!</h2>#}
+{#    <h2>You are stationed at, {{ user.profile.location }}!</h2>#}
+{##}
+{##}
+{#    {% for likedCraft in user.profile.liked_crafts %}#}
+{#        <div class="col-md-4 col-lg-3 mb-2">#}
+{#          <div class="p-2 card align-items-center pt-4">#}
+{##}
+{#            {% if user.profile.liked_craft %}#}
+{#                  <h3>You like the {{ user.profile.liked_craft }}!</h3>#}
+{##}
+{#            {% else %}#}
+{#                <h3>This is what you don't like </h3>#}
+{#            {% endif %}#}
+{##}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#      {% endfor %}#}
+{##}
+{#{% endif %}#}
+
+{#{% extends 'base.html' %}#}
+{#{% block content %}#}
+{#<header class="masthead bg-index text-white text-center#}
+{#           py-4">#}
+{#  <div class="container d-flex align-items-center flex-#}
+{#  column pt-2">#}
+{#    <h2>Your Account Page</h2>#}
+{#    <p>Welcome {{ user.username }}</p>#}
+{#  </div>#}
+{#</header>#}
+{#<div class="p-3">#}
+{#  <div class="container">#}
+{#    <div class="row mt-3">#}
+{#      <div class="col mx-auto text-center mb-3">#}
+{#        <h4>Here you can navigate to your liked posts, your old comments, and your posts too!</h4>#}
+{#      </div>#}
+{##}
+{#      <div class="p-2 card align-items-center pt-4">#}
+{#          {% if user.picture %}#}
+{#                  <img src="{{ user.picture.url }}" class="card-img-top rounded img-card-200" alt="Craft Image">#}
+{#          {% else %}#}
+{#              <h4>Couldn't find a profile image</h4>#}
+{#                  <img src="{% static 'img/Default.png' %}" class="card-img-top rounded img-card-200">#}
+{#          {% endif %}#}
+{#      </div>#}
+{##}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{#{% endblock content %}#}
