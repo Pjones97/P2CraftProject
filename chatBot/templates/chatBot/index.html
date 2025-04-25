@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projexis Bot</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts and Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-
   <style>
     :root {
       --beige: #E8E1DA;
@@ -27,168 +25,160 @@
 
     h1, h2 {
       text-align: center;
-      color: var(--text-dark);
+      margin-bottom: 20px;
     }
 
     section {
       background-color: var(--white);
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      margin: 30px auto;
-      padding: 30px 20px;
-      width: 90%;
-      max-width: 900px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+      margin: 40px auto;
+      padding: 40px 30px;
+      width: 95%;
+      max-width: 1000px;
     }
 
     form {
       text-align: center;
-      margin-top: 1rem;
+      margin-top: 20px;
     }
 
     input[type="text"] {
-      padding: 0.6rem;
-      width: 80%;
-      max-width: 400px;
-      margin-bottom: 15px;
-      border-radius: 6px;
+      padding: 14px;
+      font-size: 1.1rem;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
       border: 1px solid #ccc;
+      margin-bottom: 20px;
     }
 
     button, input[type="submit"] {
       background-color: var(--orange);
       color: var(--white);
+      font-size: 1.1rem;
       border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
+      padding: 14px 24px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      transition: background-color 0.2s ease;
     }
 
     button:hover, input[type="submit"]:hover {
       background-color: #e39e42;
     }
 
+    /* Pinterest-style grid */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      padding: 10px;
+    }
+
+    .video-card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .video-card:hover {
+      transform: scale(1.02);
+    }
+
+    .video-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .video-card p {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 10px;
+      padding: 0 10px;
+    }
+
     #map {
       width: 100%;
       height: 400px;
       border-radius: 12px;
-      margin-top: 20px;
-    }
-
-    .swiper {
-      width: 100%;
-      padding: 20px 0;
-    }
-
-    .swiper-slide {
-      background: var(--beige);
-      border-radius: 12px;
-      text-align: center;
-      padding: 10px;
-      height: auto;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .swiper-slide img {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .swiper-slide p {
-      margin-top: 5px;
-      font-weight: 600;
-      font-size: 0.95em;
+      margin-top: 25px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero / Intro -->
+  <!-- Hero Section -->
   <section>
     <h1>Welcome to Projexis</h1>
-    <p>Brainstorm your next creative project with our bot. Once you're ready, we’ll help you make it real!</p>
-    <p>If you already have an idea, skip the chat and go straight to the resources!</p>
+    <p style="font-size: 1.2rem;">Use our chatbot to brainstorm your next creative project. Already have an idea? We’ll help you bring it to life!</p>
   </section>
 
-  <!-- Project Idea Submission -->
+  <!-- Idea Form -->
   <section>
     <h2>What’s Your Craft Idea?</h2>
     <form id="ideaForm">
-      <input type="text" id="idea" name="idea" placeholder="e.g., Crochet coasters" required />
-      <br />
-      <input type="submit" value="Find YouTube Tutorials" />
+      <input type="text" id="idea" name="idea" placeholder="e.g., Candle making" required />
+      <br/>
+      <input type="submit" value="Search YouTube Tutorials" />
     </form>
   </section>
 
-  <!-- YouTube Tutorials Section -->
+  <!-- Tutorials -->
   <section id="video-section" style="display:none;">
     <h2>Video Tutorials for Your Idea</h2>
-    <div class="swiper">
-      <div class="swiper-wrapper" id="video-carousel"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
+    <div class="grid-container" id="video-grid"></div>
   </section>
 
-  <!-- Store Finder Section -->
+  <!-- Craft Store Locator -->
   <section>
-    <h2>Where to Buy Materials</h2>
+    <h2>Find Craft Stores Near You</h2>
     <form id="locationForm">
       <input type="text" id="zip" placeholder="Enter your city or zip code" required />
       <br />
-      <button type="submit">Search Craft Stores Near You</button>
+      <button type="submit">Search Stores</button>
     </form>
     <div id="map"></div>
   </section>
 
   <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <script>
-    // YouTube API (via backend)
+    // YouTube Video Search
     document.getElementById('ideaForm').addEventListener('submit', async function (e) {
       e.preventDefault();
       const idea = document.getElementById('idea').value;
       const response = await fetch(`/chatBot/api/youtube/?q=${encodeURIComponent(idea)}`);
       const data = await response.json();
 
-      const container = document.getElementById("video-carousel");
+      const container = document.getElementById("video-grid");
       container.innerHTML = "";
 
       if (data.videos && data.videos.length > 0) {
         data.videos.forEach(video => {
-          const slide = document.createElement("div");
-          slide.className = "swiper-slide";
-          slide.innerHTML = `
+          const card = document.createElement("div");
+          card.className = "video-card";
+          card.innerHTML = `
             <a href="https://www.youtube.com/watch?v=${video.videoId}" target="_blank">
               <img src="${video.thumbnail}" alt="${video.title}" />
               <p>${video.title}</p>
-            </a>`;
-          container.appendChild(slide);
+            </a>
+          `;
+          container.appendChild(card);
         });
 
         document.getElementById('video-section').style.display = 'block';
-
-        new Swiper('.swiper', {
-          slidesPerView: 2.5,
-          spaceBetween: 15,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          breakpoints: {
-            0: { slidesPerView: 1 },
-            600: { slidesPerView: 1.5 },
-            900: { slidesPerView: 2.5 }
-          }
-        });
       } else {
-        container.innerHTML = "<p>No tutorials found. Try a different idea!</p>";
+        container.innerHTML = "<p>No tutorials found. Try another idea!</p>";
         document.getElementById('video-section').style.display = 'block';
       }
     });
 
-    // Google Maps API
+    // Google Maps Craft Store Locator
     document.getElementById('locationForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const address = document.getElementById('zip').value;
@@ -227,7 +217,7 @@
     });
   </script>
 
-  <!-- Google Maps API Key -->
+  <!-- Google Maps API -->
   <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCseiFgaYDtfR-9L3MvAnWlnl1aOyLqYs0&libraries=places">
   </script>
