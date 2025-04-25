@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--  block content -->
+{% load static %}
+
 {% if user.is_authenticated %}
   {% if user.profile.picture %}
     <img src="{{ user.profile.picture.url }}" alt="Profile Picture" class="rounded-circle" width="100">
@@ -53,7 +58,7 @@
     {% endif %}
   </div>
 {% endif %}
-
+{% endblock content %}
 
 
 {#{% if user.is_authenticated %}#}
