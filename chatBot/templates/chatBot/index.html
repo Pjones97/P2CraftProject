@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projexis Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projexis Bot + Chat</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+
+  <!-- HTMX for Chat -->
+  <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
 
   <style>
     :root {
@@ -40,12 +43,7 @@
       max-width: 900px;
     }
 
-    form {
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    input[type="text"] {
+    input[type="text"], input[type='text'][name='message'] {
       padding: 0.6rem;
       width: 80%;
       max-width: 400px;
@@ -100,18 +98,69 @@
       font-weight: 600;
       font-size: 0.95em;
     }
+
+    /* Chat Styles */
+    .my-indicator {
+      display: none;
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #3498db;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 0.5s linear infinite;
+    }
+
+    .htmx-request .my-indicator {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .user-message { color: #b83eff; padding: 5px; }
+    .bot-message { color: darkblue; padding: 5px; }
+
+    #chatbox {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Hero / Intro -->
+  <!-- Welcome Section -->
   <section>
     <h1>Welcome to Projexis</h1>
     <p>Brainstorm your next creative project with our bot. Once you're ready, we’ll help you make it real!</p>
     <p>If you already have an idea, skip the chat and go straight to the resources!</p>
   </section>
 
-  <!-- Project Idea Submission -->
+  <!-- Chatbot Section  make sure u do "pip install openai" in ur terminal so it works--> 
+  <section>
+    <h2>Chat with the Projexis Bot</h2>
+    <div id="container">
+      {% include 'chatbox.html' %}
+      <form
+        hx-post="{% url 'chat_view' %}"
+        hx-target="#chatbox"
+        hx-swap="innerHTML"
+        hx-on="htmx:afterRequest: this.reset()"
+      >
+        {% csrf_token %}
+        <div class="my-indicator"></div>
+        <div class="input-fields">
+          <input type="text" name="message" />
+          <button type="submit">Send</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Project Idea -->
   <section>
     <h2>What’s Your Craft Idea?</h2>
     <form id="ideaForm">
@@ -121,7 +170,7 @@
     </form>
   </section>
 
-  <!-- YouTube Tutorials Section -->
+  <!-- YouTube Videos -->
   <section id="video-section" style="display:none;">
     <h2>Video Tutorials for Your Idea</h2>
     <div class="swiper">
@@ -131,7 +180,7 @@
     </div>
   </section>
 
-  <!-- Store Finder Section -->
+  <!-- Store Locator -->
   <section>
     <h2>Where to Buy Materials</h2>
     <form id="locationForm">
@@ -145,13 +194,12 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <script>
-    // YouTube API (via backend)
+    // YouTube API handler
     document.getElementById('ideaForm').addEventListener('submit', async function (e) {
       e.preventDefault();
       const idea = document.getElementById('idea').value;
       const response = await fetch(`/chatBot/api/youtube/?q=${encodeURIComponent(idea)}`);
       const data = await response.json();
-
       const container = document.getElementById("video-carousel");
       container.innerHTML = "";
 
@@ -188,12 +236,12 @@
       }
     });
 
-    // Google Maps API
+    // Google Maps Store Search
     document.getElementById('locationForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const address = document.getElementById('zip').value;
-
       const geocoder = new google.maps.Geocoder();
+
       geocoder.geocode({ address: address }, function (results, status) {
         if (status === 'OK') {
           const userLocation = results[0].geometry.location;
@@ -227,7 +275,6 @@
     });
   </script>
 
-  <!-- Google Maps API Key -->
   <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCseiFgaYDtfR-9L3MvAnWlnl1aOyLqYs0&libraries=places">
   </script>
