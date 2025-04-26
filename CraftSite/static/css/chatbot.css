@@ -1,0 +1,123 @@
+:root {
+    --beige: #E8E1DA;
+    --orange: #FEB856;
+    --text-dark: #333;
+    --white: #fff;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--beige);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    color: var(--text-dark);
+  }
+  
+  section {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin: 30px auto;
+    padding: 30px 20px;
+    width: 90%;
+    max-width: 900px;
+  }
+  
+  input[type="text"], input[type='text'][name='message'] {
+    padding: 0.6rem;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  button, input[type="submit"] {
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover, input[type="submit"]:hover {
+    background-color: #e39e42;
+  }
+  
+  #map {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    margin-top: 20px;
+  }
+  
+  .swiper {
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .swiper-slide {
+    background: var(--beige);
+    border-radius: 12px;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  
+  .swiper-slide img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .swiper-slide p {
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+  
+  /* Chat Styles */
+  .my-indicator {
+    display: none;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 0.5s linear infinite;
+  }
+  
+  .htmx-request .my-indicator {
+    display: inline-block;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .user-message {
+    color: #b83eff;
+    padding: 5px;
+  }
+  
+  .bot-message {
+    color: darkblue;
+    padding: 5px;
+  }
+  
+  #chatbox {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
