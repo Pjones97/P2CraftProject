@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'location_field.apps.DefaultConfig',
+    'location_field.apps.DefaultConfig',
     # 'django.contrib.gis', # This guy gives an error, so imma try the google maps variation
 
     'Crafts',
