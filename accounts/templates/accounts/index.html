@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 {% if user.is_authenticated %}
   {% if user.profile.picture %}
     <img src="{{ user.profile.picture.url }}" alt="Profile Picture" class="rounded-circle" width="100">
@@ -5,7 +7,7 @@
     <img src="/CraftSite/static/img/Default.png" alt="Default Profile Picture" class="rounded-circle" width="100">
   {% endif %}
   <h2>Welcome, {{ user.username }}!</h2>
-  <h2>You are stationed at, {{ user.profile.location }}!</h2>
+{#  <h2>You are stationed at, {{ user.profile.location }}!</h2>#}
 
   <div class="crafts-section">
     <h3>Your Liked Crafts:</h3>
@@ -53,6 +55,7 @@
     {% endif %}
   </div>
 {% endif %}
+{% endblock content %}
 
 
 

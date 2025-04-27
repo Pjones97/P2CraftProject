@@ -51,7 +51,7 @@ def update_profile(request):
             # Save many-to-many fields
             form.save_m2m()
 
-            return redirect('index')
+            return redirect('accounts.index')
     else:
         form = ProfileForm(instance=request.user.profile)
 
