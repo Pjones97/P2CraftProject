@@ -92,18 +92,21 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
   var swiper = new Swiper('.swiper-container', {
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
     slidesPerView: 1,
     spaceBetween: 30,
-    loop: true,
+    loop: false,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-          0: { slidesPerView: 0 },
-          600: { slidesPerView: 1 },
-          900: { slidesPerView: 1}
     }
   });
 </script>
-{% endblock %}
+{% endblock %} 
