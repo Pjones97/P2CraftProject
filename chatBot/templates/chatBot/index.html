@@ -30,6 +30,16 @@
       <button type="submit">Send</button>
     </div>
   </form>
+
+  <button 
+    hx-post="{% url 'delete_conversation' %}" 
+    hx-target="#chatbox" 
+    hx-swap="innerHTML" 
+    hx-confirm="Are you sure you want to delete this conversation?"
+    class="btn btn-danger mt-3 delete-btn"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  Delete Conversation
+  </button>
 </section>
 
 <!-- Project Idea Section -->
@@ -73,6 +83,12 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize chatbox scrolling on page load
+  const chatbox = document.getElementById('chatbox');
+  if (chatbox) {
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+  
   // YouTube API
   document.getElementById('ideaForm').addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -157,7 +173,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // HTMX After Swap (for chat or if dynamic updates needed later)
 document.body.addEventListener('htmx:afterSwap', function(evt) {
-  // You can add any re-init code here if needed
+  // Auto-scroll chatbox to bottom when content changes
+  const chatbox = document.getElementById('chatbox');
+  if (chatbox) {
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
 });
 </script>
 
