@@ -104,6 +104,18 @@ def show(request, id):
         template_data['can_like'] = request.user.id != craft.userThatUploaded.id
     return render(request, 'Media/show.html', {'template_data': template_data})
 
+@login_required
+def toggle_like(request, craft_id):
+    craft = get_object_or_404(CraftIdeaModel, id=craft_id)
+    if request.user in craft.likes.all():
+        craft.likes.remove(request.user)
+        liked = False
+    else:
+        craft.likes.add(request.user)
+        liked = True
+
+    like_count = craft.likes.count()
+    return JsonResponse({'liked': liked, 'like_count': like_count})
 
 # views.py
 # def show(request, id):

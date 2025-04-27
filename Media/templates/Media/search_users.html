@@ -1,30 +1,19 @@
-<!-- this can be added when the base template is made aka the dashboard -->
-<!-- extends 'base.html' -->
 {% extends 'base.html' %}
 {% block content %}
-<!--  block content -->
 {% load static %}
 <div class="p-3">
   <div class="container">
     <div class="row mt-3">
       <div class="col mx-auto mb-3">
-        <h2>All Users </h2>
+        <h2>All Users</h2>
         <hr />
         <p class="card-text">
           <form method="GET">
-            <div class="row">
-              <div class="col-auto">
-                <div class="input-group col-auto">
-                  <div class="input-group-text">
-                    Search</div>
-                  <input type="text" class="form-control"
-                    name="search">
-                </div>
-              </div>
-              <div class="col-auto">
-                <button class="btn bg-dark text-white"
-                  type="submit">Search</button>
-              </div>
+            <div class="input-group">
+              <input type="text" class="form-control rounded-start" name="search" placeholder="Search..." style="height: 50px;">
+              <button class="btn btn-dark rounded-end" type="submit" style="height: 50px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
           </form>
         </p>
@@ -33,18 +22,17 @@
     <div class="row">
       {% for profile in template_data.profiles %}
         <div class="col-md-4 col-lg-3 mb-2">
-          <div class="p-2 card align-items-center pt-4">
-
+          <div class="p-2 card border-0 align-items-center pt-4">
             {% if profile.picture %}
-                  <img src="{{ profile.picture.url }}" class="card-img-top rounded img-card-200" alt="Profile Image">
-
+              <img src="{{ profile.picture.url }}" class="card-img-top rounded img-card-200" alt="Profile Image">
             {% else %}
-                  <img src="{% static 'img/Default.png' %}" class="card-img-top rounded img-card-200">
+              <img src="{% static 'img/Default.png' %}" class="card-img-top rounded img-card-200">
             {% endif %}
-
             <div class="card-body text-center">
               <h5 class="card-title">{{ profile.user }}</h5>
-              <a href="{% url 'view_profile' profile.id %}" class="btn btn-primary">View User Details</a>
+              <a href="{% url 'view_profile' profile.id %}" class="btn btn-theme">
+                View User Details
+              </a>
             </div>
           </div>
         </div>
@@ -52,6 +40,4 @@
     </div>
   </div>
 </div>
-
 {% endblock content %}
-<!-- endblock content %} -->
