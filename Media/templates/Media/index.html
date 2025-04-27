@@ -11,29 +11,21 @@
         <h2>Posted Crafts </h2>
         <hr />
         <p class="card-text">
-          <form method="GET">
-            <div class="row">
-              <div class="col-auto">
-                <div class="input-group col-auto">
-                  <div class="input-group-text">
-                    Search</div>
-                  <input type="text" class="form-control"
-                    name="search">
-                </div>
-              </div>
-              <div class="col-auto">
-                <button class="btn bg-dark text-white"
-                  type="submit">Search</button>
-              </div>
-            </div>
-          </form>
+         <form method="GET">
+  <div class="input-group">
+    <input type="text" class="form-control rounded-start" name="search" placeholder="Search">
+    <button class="btn btn-dark rounded-end" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</form>
         </p>
       </div>
     </div>
     <div class="row">
       {% for craft in template_data.crafts %}
         <div class="col-md-4 col-lg-3 mb-2">
-          <div class="p-2 card align-items-center pt-4">
+          <div class="p-2 card border-0 align-items-center pt-4">
             
             {% if craft.image %}
                   <img src="{{ craft.image.url }}" class="card-img-top rounded img-card-200" alt="Craft Image">
@@ -44,8 +36,10 @@
 
             <div class="card-body text-center">
               <h5 class="card-title">{{ craft.title }}</h5>
-              <a href="{% url 'Media.show' craft.id %}" class="btn btn-primary">View Details</a>
-            </div>
+              <a href="{% url 'Media.show' craft.id %}" class="btn btn-theme">
+                View Details
+              </a>
+             </div>
           </div>
         </div>
       {% endfor %}

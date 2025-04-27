@@ -83,3 +83,5 @@ coverage.xml
 
 # PyBuilder
 target/
+*.pyc
+__pycache__/

@@ -7,7 +7,8 @@
   } */
 
 .card {
-    border: 3px solid rgb(12, 12, 12);
+    border: 3px solid #FFFFFF
+    ;
 }
 .sidenav a:hover {
   background-color: #FFE5B4;
@@ -34,11 +35,11 @@
 
 
 .img-card-200 {
-  width: 100%;
-  height:200px;
-  object-fit:cover;
-  object-position: center;
+  width: fit-content;
+  max-height: 200px;
 }
+
+
 
 .img-card-400 {
   width: fit-content;
@@ -51,7 +52,7 @@
   --orange: #FEB856;
 }
 
-/* ===== Base Styles ===== */
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--beige);
@@ -59,7 +60,7 @@ body {
   margin: 0;
 }
 
-/* ===== Universal Header Styles ===== */
+
 .site-header {
   background-color: var(--orange);
   color: white;
@@ -81,7 +82,7 @@ body {
   margin: 0;
 }
 
-/* ===== Footer (Optional) ===== */
+
 .site-footer {
   background-color: var(--orange);
   color: white;
@@ -122,4 +123,35 @@ body {
   right: 25px;
   font-size: 36px;
   color: #FEB856;
+}
+.input-group .form-control {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.input-group .btn {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.input-group .form-control,
+.input-group .btn {
+  height: 48px; 
+  padding: 0 16px;
+  font-size: 1rem;
+}
+
+.input-group .btn i {
+  margin-top: 2px; 
+}
+.btn-theme {
+  background-color: var(--orange);
+  color: white;
+  border: 2px solid var(--orange);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-theme:hover {
+  background-color: white;
+  color: var(--orange);
+  border-color: var(--orange);
 }
