@@ -52,15 +52,7 @@
   --beige: #E8E1DA;
   --orange: #FEB856;
 }
-.btn-yellow {
-  background-color: #FEB856;
-  color: white;
-  border: none;
-}
 
-.btn-yellow:hover {
-  background-color: #e0a845; /* Slightly darker yellow for hover effect */
-}
 
 body {
   font-family: 'Poppins', sans-serif;
