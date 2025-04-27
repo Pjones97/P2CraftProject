@@ -119,5 +119,61 @@
     padding: 10px;
     background-color: #f9f9f9;
     border-radius: 10px;
+    max-height: 400px;
+    overflow-y: auto;
   }
   
+  /* Delete button loading indicator */
+  .delete-indicator {
+    display: none;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #dc3545;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 0.5s linear infinite;
+    margin-right: 8px;
+  }
+  
+  .htmx-request.delete-btn .delete-indicator {
+    display: inline-block;
+  }
+  
+  /* Success message styling */
+  .success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    border-left: 4px solid #28a745;
+    animation: fadeOut 5s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  /* Delete button active state */
+  .delete-btn.deleting {
+    background-color: #b02a37;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.5);
+  }
+  
+  /* Disabled input styling */
+  input[type="text"]:disabled {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    border-color: #dee2e6;
+    cursor: not-allowed;
+  }
+  
+  button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.65;
+  }

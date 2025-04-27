@@ -1,7 +1,28 @@
 
-<div id="chatbox">
+{% if messages %}
+    {% for message in messages %}
+        <div class="user-message">User: {{ message.user_message }}</div>
+        <div class="bot-message">Bot: {{ message.bot_message }}</div>
+    {% endfor %}
+{% endif %}
+
+
+
+<!-- <div id="chatbox">
     {% for message in messages %}
     <div class="user-message">User: {{ message.user_message }}</div>
     <div class="bot-message">Bot: {{ message.bot_message }}</div>
     {% endfor %}
 </div>
+
+<div>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="message">
+          <strong>{{ message.sender }}:</strong> {{ message.text }}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No conversation yet. Start chatting!</p>
+    {% endif %}
+</div> -->
