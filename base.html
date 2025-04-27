@@ -28,7 +28,7 @@
   <a href="{% url 'Crafts.index' %}">Home</a>
   <a href="{% url 'Media.index' %}">Media</a>
   <a href="{% url 'chatBot.index' %}">Assistant</a>
-  <a href="{% url 'search_users' %}">Search users</a>
+  <a href="{% url 'search_users' %}">Search Users</a>
   {% if user.is_authenticated %}
     <a href="{% url 'CraftIdeaModel.create_craft' %}">Create</a>
     <div class="logout-container">
