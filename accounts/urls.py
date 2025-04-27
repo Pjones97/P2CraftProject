@@ -4,7 +4,7 @@ from django.contrib.auth.views import PasswordResetDoneView
 from .views import ForgotPasswordView, ResetConfirm, ResetComplete
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.index, name='accounts.index'),
     path('signup/', views.signup, name='accounts.signup'),
     path('login/', views.login, name='accounts.login'),
     path('logout/', views.logout, name='accounts.logout'),
