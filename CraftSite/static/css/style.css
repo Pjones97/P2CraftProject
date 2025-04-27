@@ -9,6 +9,29 @@
 .card {
     border: 3px solid rgb(12, 12, 12);
 }
+.sidenav a:hover {
+  background-color: #FFE5B4;
+  color: #FEB856;
+  border-radius: 5px;
+}
+.swiper-container {
+  width: 100%;
+  height: 400px; /* Adjust height if needed */
+}
+
+
+.swiper-wrapper {
+  display: flex; 
+}
+
+/* Adjust swiper arrow position */
+.swiper-button-next, .swiper-button-prev {
+  top: 50%; /* Center the arrows vertically */
+  transform: translateY(-50%); /* Adjust the arrows to be perfectly centered */
+  z-index: 5; /* Ensure they appear on top of the swiper */
+}
+
+
 
 .img-card-200 {
   width: 100%;

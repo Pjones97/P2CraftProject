@@ -1,9 +1,108 @@
 {% extends 'base.html' %}
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% block content %}
-<div class="p-3">
-  <div class="container text-center mt-4">
-    <h4>Welcome to PROJEXIS Home Page!!</h4>
+<!-- Hero Section -->
+<section class="text-center py-5"">
+  <div class="container">
+    <h1 class="display-4 fw-bold">PROJEXIS</h1>
+    <h2>Where Ideas Become Reality.</h2> <!-- You can swap out for any tagline you like -->
   </div>
-</div>
-{% endblock content %}
+</section>
+<hr style="border: 2px solid #feb856; margin: 0;">
+<section> 
+  <h1 class="text-center">Our Why</h1>
+
+  <p> 
+    The purpose of Projexis is to allow users to find inspiration and resources for creating new crafts and projects. Projexis allows users to share their imagination and creation with the world or find ideas from the community. Sometimes, people don't where to start when tackling a new task, but with the supportive environment Projexis will facilitate, new innovators and craftsmen can get the information they need to see their creation come to life.
+
+  </p>
+</section>
+<hr style="border: 2px solid #feb856; margin: 0;">
+<!-- Meet the Team Section -->
+<section class="py-5">
+
+    <h2 class="fw-bold mb-5">Meet the Team</h2>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Team Member 1 -->
+        <div class="swiper-slide">
+          <img src="{% static 'img/jed.avif' %}" alt="Team Member 1" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+          <h5 class="mt-3">Jedaiah Hudson</h5>
+          <a href="https://www.linkedin.com/in/jedaiah-hudson/" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+        <!-- Team Member 2 -->
+        <div class="swiper-slide">
+          <img src="{% static 'img/rach.avif' %}" alt="Team Member 2" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+          <h5 class="mt-3">Rachel McBride</h5>
+          <a href="https://www.linkedin.com/in/rachel-m-2551a1227/" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+        <!-- Add more team members here -->
+        <div class="swiper-slide">
+          <img src="{% static 'img/me.avif' %}" alt="Team Member 3" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+          <h5 class="mt-3">Patience Jones</h5>
+          <a href="https://www.linkedin.com/in/patience-jones404/" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <img src="{% static 'img/isa.avif' %}" alt="Team Member 4" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+          <h5 class="mt-3">Isaiah Shakir</h5>
+          <a href="https://www.linkedin.com/in/isaiah-shakir/" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <img src="{% static 'img/tayo.avif' %}" alt="Team Member 5" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+          <h5 class="mt-3">Raymond Ojo</h5>
+          <a href="https://www.linkedin.com/in/raym0nd0jo/" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+    <!-- Swiper Navigation -->
+    <div class="swiper-button-next" style="color : #feb856; top: 150%" >
+      <i class="fas fa-chevron-right"></i>
+    </div>
+
+    <div class="swiper-button-prev" style="color : #feb856; top: 150%" >
+      <i class="fas fa-chevron-left"></i>
+    </div>
+
+</section>
+
+<!-- Footer Section -->
+<footer class="text-center text-muted py-4" style="background-color: #f5f5f5;">
+  <div class="container swiper-container">
+    <p>&copy; 2025 PROJEXIS. All rights reserved.</p>
+  </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+          0: { slidesPerView: 0 },
+          600: { slidesPerView: 1 },
+          900: { slidesPerView: 1}
+    }
+  });
+</script>
+{% endblock %}
