@@ -114,7 +114,7 @@ def toggle_like(request, craft_id):
         craft.likes.add(request.user)
         liked = True
 
-    like_count = craft.likes.count()
+    like_count = craft.likes.count()  # Get the updated like count
     return JsonResponse({'liked': liked, 'like_count': like_count})
 
 # views.py
@@ -308,28 +308,19 @@ def create_craft(request):
 
 # views.py
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .models import CraftIdeaModel  # Replace with your actual model name
 
 @login_required
-@require_POST
 def toggle_like(request, craft_id):
     craft = get_object_or_404(CraftIdeaModel, id=craft_id)
-    profile = Profile.objects.get(user=request.user)
-
-    if profile.liked_crafts.filter(id=craft_id).exists():
-        profile.liked_crafts.remove(craft)
+    if request.user in craft.likes.all():
+        craft.likes.remove(request.user)
         liked = False
     else:
-        profile.liked_crafts.add(craft)
+        craft.likes.add(request.user)
         liked = True
 
-    return JsonResponse({'liked': liked})
-
-# Add the URL pattern for the toggle_like view in your urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('craft/<int:craft_id>/toggle_like/', views.toggle_like, name='toggle_like'),
-    # other URL patterns...
-]
+    like_count = craft.likes.count()  # Get the updated like count
+    return JsonResponse({'liked': liked, 'like_count': like_count})
