@@ -78,25 +78,24 @@ body {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidenav a {
   padding: 8px 32px;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 18px;
   color: #818181;
   display: block;
   transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #FEB856;
+  color: #feb856;
 }
 
-.sidenav .closebtn {
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 36px;
-  color: #FEB856;
+.logout-container {
+  margin-top: auto; /* Pushes the logout link to the bottom */
+  padding: 16px 32px;
 }
