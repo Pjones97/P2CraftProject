@@ -104,3 +104,26 @@ def get_existing_messages() -> list:
         formatted_messages.append({"role": "assistant", "content": message['bot_message']})
 
     return formatted_messages
+
+def delete_conversation(request):
+    if request.method == "POST":
+        # Delete all messages from the database
+        Message.objects.all().delete()
+        
+        # Return an empty response to clear the chatbox
+        if request.headers.get('Hx-Request'):
+            from django.http import HttpResponse
+            return HttpResponse("")  # Empty response to clear the chatbox
+        
+        # For regular requests, return the full page
+        return render(request, 'chatBot/index.html', {'messages': []})
+    
+    # Handle non-POST requests
+    return JsonResponse({'error': 'Invalid request method. Only POST is allowed.'}, status=400)
+
+# def delete_conversation(request):
+#     if request.method == "POST":
+#         # Clear the conversation data (this depends on how you're storing it)
+#         request.session['chat_history'] = []  # Example: Clearing session-based chat history
+#         return render(request, 'chatbox.html', {'messages': []})  # Return an empty chatbox
+#     return JsonResponse({'error': 'Invalid request'}, status=400)
