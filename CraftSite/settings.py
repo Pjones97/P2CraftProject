@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -171,4 +172,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 YOUTUBE_API_KEY = "AIzaSyBI8SI8Dlykx_e8PyhK5YzTiLX5Nm3aBWs"  # Replace with your actual API key
 
-OPENAI_API_KEY = "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"  
+OPENAI_API_KEY = config('OPENAI_API_KEY')
+
