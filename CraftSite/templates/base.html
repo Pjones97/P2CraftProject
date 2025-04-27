@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/chatbot.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body style="font-family: 'Poppins', sans-serif; transition: background-color 0.5s;">
@@ -17,6 +19,14 @@
   <a href="{% url 'Crafts.index' %}">Home</a>
   <a href="{% url 'Media.index' %}">Media</a>
   <a href="{% url 'chatBot.index' %}">Assistant</a>
+  {%if user.is_authenticated %}
+    <a href="{% url 'CraftIdeaModel.create_craft' %}">Create</a>
+  {%endif%}
+  <a href="{% url 'search_users' %}">Search users</a>
+  {%if not user.is_authenticated %}
+    <a href="{% url 'accounts.login' %}">Login</a> <!-- Conditonal Login link -->
+    <a href="{% url 'accounts.signup' %}">Sign Up</a> <!-- Conditional Sign Up link -->
+  {%endif%}
 </div>
 
 <!-- Hamburger Logo Button -->
@@ -54,6 +64,7 @@
     document.body.style.backgroundColor = "white";
   }
 </script>
-
+{% block scripts %}
+{% endblock %}
 </body>
 </html>
