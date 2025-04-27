@@ -71,14 +71,20 @@
         <hr />
         <ul class="list-group">
             {% for review in template_data.reviews %}
-                <li class="list-group-item pb-3 pt-3">
-                    <h5 class="card-title">Review by {{ review.user.username }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ review.date }}</h6>
-                    <p class="card-text">{{ review.comment }}</p>
-                    {% if user.is_authenticated and user == review.user %}
-                        <a class="btn text-white" style="background-color: #FEB856; color: white; border: none; href="{% url 'CraftIdeaModel.edit_review' id=template_data.craft.id review_id=review.id %}">Edit</a>
-                        <a class="btn btn-danger" href="{% url 'CraftIdeaModel.delete_review' id=template_data.craft.id review_id=review.id %}">Delete</a>
+                <li class="list-group-item pb-3 pt-3 d-flex align-items-center">
+                    <!-- Profile Picture -->
+                    {% if review.user.profile.picture %}
+                        <img src="{{ review.user.profile.picture.url }}" alt="Profile Picture" class="rounded-circle me-3" style="width: 40px; height: 40px; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'img/default-profile.png' %}" alt="Default Profile Picture" class="rounded-circle me-3" style="width: 40px; height: 40px; object-fit: cover;">
                     {% endif %}
+                    
+                    <!-- Username and Comment -->
+                    <div>
+                        <h5 class="card-title mb-1">Review by {{ review.user.username }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ review.date }}</h6>
+                        <p class="card-text">{{ review.comment }}</p>
+                    </div>
                 </li>
             {% endfor %}
         </ul>
