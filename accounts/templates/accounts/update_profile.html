@@ -22,15 +22,15 @@
             {{ form.location }}
         </div>
 
-        <!-- Liked Crafts -->
-        <div class="form-group">
-            <label>Liked Crafts</label>
-            {{ form.liked_crafts }}
-            <small class="form-text text-muted">
-                Hold down "Control" (or "Command" on Mac) to select multiple options.
-            </small>
-        </div>
-
+{#        <!-- Liked Crafts -->#}
+{#        <div class="form-group">#}
+{#            <label>Liked Crafts</label>#}
+{#            {{ form.liked_crafts }}#}
+{#            <small class="form-text text-muted">#}
+{#                Hold down "Control" (or "Command" on Mac) to select multiple options.#}
+{#            </small>#}
+{#        </div>#}
+{##}
         <!-- User Crafts -->
         <div class="form-group">
             <label>Your Created Crafts</label>
@@ -41,7 +41,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update Profile</button>
-        <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+        <a href="{% url 'accounts.index' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 {% endblock %}

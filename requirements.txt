@@ -1,1 +1,12 @@
-googlemaps
+asgiref==3.8.1
+certifi==2025.4.26
+charset-normalizer==3.4.1
+Django==5.1.6
+googlemaps==4.10.0
+idna==3.10
+pillow==11.1.0
+PyMySQL==1.1.1
+requests==2.32.3
+sqlparse==0.5.3
+urllib3==2.4.0
+wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.8/libexec/wheel-0.45.1-py3-none-any.whl#sha256=ff30fbe2536d325272e73cd91fbfbda0f3ea73559a5c26e22e9f5b65429fa0b9
