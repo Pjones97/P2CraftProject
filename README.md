@@ -1,8 +1,9 @@
-Projexis
+# Projexis
 
 Projexis is a web platform designed for crafting enthusiasts to brainstorm, create, and connect. With smart tools and a collaborative community, Projexis makes it easy to go from idea to reality.
 
-Features:
+# Features:
+
 AI Chatbot – Converse with an AI to brainstorm crafting ideas and get project guidance.
 
 YouTube Video Finder – Pull in helpful tutorial videos based on your idea using the YouTube Data API.
@@ -12,7 +13,7 @@ Local Resource Finder – Use Google Maps API to locate nearby stores or supplie
 Crafting Community – Share projects, tips, and ideas with fellow creators in a supportive environment.
 
 
-Tech Stack:
+# Tech Stack:
 Backend: Django (Python)
 Frontend: React.js (integrated with Django)
 Database: SQL (SQLite or PostgreSQL depending on setup)
@@ -23,7 +24,7 @@ Google Maps API
 Image Processing: Pillow (for image uploads and manipulation)
 Getting Started
 
-Prerequisites:
+# Prerequisites:
 Python 3.x and pip
 Node.js and npm
 Git
@@ -38,7 +39,7 @@ Clone the repository:
 - git clone https://github.com/your-username/projexis.git
 - cd projexis
   
-Set up and activate a Python virtual environment:
+# Set up and activate a Python virtual environment:
 python -m venv env
 source env/bin/activate   
 # On Windows use `env\Scripts\activate`
@@ -56,7 +57,7 @@ python manage.py migrate
 Start the Django development server:
 python manage.py runserver
 
-Usage
+# Usage
 
 Navigate to http://localhost:8000 to use the platform.
 Use the AI Chatbot to brainstorm.
